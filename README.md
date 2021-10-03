@@ -8,6 +8,12 @@
 
 > Java, JSP, Servlet, Tomcat, JDBC
 
+### JVM Arguments
+
+```sh
+-Dfile.encoding=UTF-8 -Dusername="DB_USERNAME" -Dcredentials="DB_PASSWORD" -Durl="DB_URL"
+```
+
 ### 프로젝트 구조
 
 ```sh
