@@ -1,4 +1,4 @@
-package project.controller;
+package term.project.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

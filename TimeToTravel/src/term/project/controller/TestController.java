@@ -1,4 +1,4 @@
-package project.controller;
+package term.project.controller;
 
 import term.project.domain.entity.Comment;
 import term.project.repository.CommentRepository;

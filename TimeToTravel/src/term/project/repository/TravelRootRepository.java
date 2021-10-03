@@ -1,4 +1,4 @@
-package project.repository;
+package term.project.repository;
 
 import term.project.domain.entity.TravelRoot;
 import term.project.util.DBUtil;

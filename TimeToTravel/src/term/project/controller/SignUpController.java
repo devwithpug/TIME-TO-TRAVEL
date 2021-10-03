@@ -1,4 +1,4 @@
-package project.controller;
+package term.project.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,15 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/mypage")
-public class MyPageController extends HttpServlet {
+@WebServlet(value = "/signup")
+public class SignUpController extends HttpServlet {
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("/termproject/mypage.jsp");
-
-        String userId = req.getParameter("user_id");
-        // TODO - userId
+        RequestDispatcher rd = req.getRequestDispatcher("/termproject/signup.jsp");
 
         rd.forward(req, resp);
     }

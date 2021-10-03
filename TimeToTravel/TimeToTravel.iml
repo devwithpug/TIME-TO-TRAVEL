@@ -9,6 +9,7 @@
         <webroots>
           <root url="file://$MODULE_DIR$/web" relative="/" />
         </webroots>
+        <sourceRoots />
       </configuration>
       <facet type="webservices" name="WebServices">
         <configuration ws.engine="Apache Axis" />
@@ -22,5 +23,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="javax.servlet.jstl" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../tools/apache-tomcat-9.0.52/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../../../tools/apache-tomcat-9.0.52/lib" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
