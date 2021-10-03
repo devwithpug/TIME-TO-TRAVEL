@@ -6,7 +6,7 @@
 
 ### 기술 스택
 
-> Java, Servlet, Tomcat, JDBC
+> Java, JSP, Servlet, Tomcat, JDBC
 
 ### 프로젝트 구조
 
