@@ -1,8 +1,8 @@
-package project.domain.entity;
+package term.project.domain.entity;
 
 import java.time.LocalDateTime;
 
-public class Review {
+public class TravelRoot {
 
     private String postId;
     private String authorId;
@@ -13,7 +13,7 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "TravelRoot{" +
                 "postId='" + postId + '\'' +
                 ", authorId='" + authorId + '\'' +
                 ", createdAt=" + createdAt +
@@ -26,7 +26,15 @@ public class Review {
 
     }
 
-    public Review(String postId, String title, String authorId, String description, LocalDateTime createdAt, Integer viewCount) {
+    public TravelRoot(String authorId, LocalDateTime createdAt, String title, String description, Integer viewCount) {
+        this.authorId = authorId;
+        this.createdAt = createdAt;
+        this.title = title;
+        this.description = description;
+        this.viewCount = viewCount;
+    }
+
+    public TravelRoot(String postId, String title, String authorId, String description, LocalDateTime createdAt, Integer viewCount) {
         this.postId = postId;
         this.title = title;
         this.authorId = authorId;

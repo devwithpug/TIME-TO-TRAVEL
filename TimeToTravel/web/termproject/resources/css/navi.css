@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'cafe24_ddh';
+    src: url('../font/cafe_24_dangdanghae.ttf');
+}
+@font-face {
+    font-family: 'cafe24_djh';
+    src: url('../font/cafe_24_danjunghae.ttf');
+}
+@font-face {
+    font-family: 'cafe24_sph';
+    src: url('../font/cafe_24_implehae.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'cafe24_sph';
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+.wrapper {
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+
+.item {
+    padding: 8px;
+}
+
+.wrapper {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 0.2fr 0.6fr 10fr auto;
+}
+
+.logo {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+}
+
+.header {
+    grid-column-start: 3;
+    grid-column-end: 9;
+
+}
+
+.headerbtn{
+    position: relative;
+    float: right;
+    top: 40%;
+    padding-right: 100px;
+}
+
+.nav {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: space-around;
+    background: rgba(236, 241, 255, 0.94);
+}
+.navi{
+    list-style: none;
+    padding: 0 0 0 4%;
+    margin: 0px;
+    text-align: center;
+}
+.navi li{
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+}
+.navi li a{
+    width: 150px;
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 25px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
+.navi li a:hover{
+    color: #46B7D9;
+    transition: all 0.2s;
+
+}
+.navi li ul{
+    list-style: none;
+    position: absolute;
+    width: 150px;
+    padding: 0px;
+    margin: 0px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+.navi li:hover ul{
+    opacity: 1;
+    visibility: visible;
+    nav-down: auto;
+    transition: all .4s;
+}
+.navi li ul li{
+    float: none;
+    background: none;
+}
+.navi li:hover ul li{
+    height: 30px;
+    line-height: 30px;
+    padding: 5px 0px;
+}
+.navi li ul li a{
+    color: gray;
+    border-radius: 10px;
+}
+.navi li ul li a:hover{
+    background: rgba(0, 0, 0, 0.1);
+    transition: all .4s;
+    width: 145px;
+}
+
+.paging {
+    display: flex;
+    justify-content: center;
+}

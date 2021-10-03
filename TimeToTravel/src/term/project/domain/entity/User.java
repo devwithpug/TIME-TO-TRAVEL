@@ -1,4 +1,4 @@
-package project.domain.entity;
+package term.project.domain.entity;
 
 public class User {
 
