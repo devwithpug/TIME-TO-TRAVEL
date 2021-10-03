@@ -1,0 +1,18 @@
+.main {
+    grid-column-start: 2;
+    grid-column-end: 7;
+}
+.btn_group{
+    margin-top: 5%;
+    margin-left: 18%;
+}
+.btn_group input{
+    margin: 10px;
+    
+}
+.confirm_text {
+    margin-left: 16%;
+}
+#leave-pw{
+    margin-left: 53%;
+}

@@ -1,0 +1,38 @@
+footer {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    background: rgba(236, 241, 255, 0.94);
+}
+
+footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+footer > div, footer > div > div > div {
+    font-family: 'cafe24_djh' !important;
+}
+.footer_nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.footer_info {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    text-align: center;
+}
+.inner_wrap {
+    padding: 40px 40px 40px;
+}
+.txtWrap {
+    list-style: none;
+    padding: 0;
+}
+a{
+    text-decoration: none !important;
+}
+.footer_info{
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 5px;
+}
+

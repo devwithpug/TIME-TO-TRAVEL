@@ -1,0 +1,179 @@
+.main {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    background: #F8F8FA;
+}
+.main-img {
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+}
+.main-img-text{
+    position: absolute;
+    font-family: 'cafe24_sph';
+    font-weight: bold;
+    font-size: 90px;
+    top: 15%;
+    left: 10%;
+    color: white;
+    text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.8);
+}
+#caret {  
+    display: inline-block;
+    animation-name: cursor;
+    animation-duration: 1s; 
+    animation-iteration-count: infinite; 
+} 
+
+@keyframes cursor {
+    from {border-bottom: 68px solid #fff}
+    50% {border-bottom: 68px solid #272727}
+    to {border-bottom: 68px solid #fff}
+}
+.main-text {
+    text-align: center;
+    font-family: 'cafe24_sph';
+    font-weight: bold;
+}
+.main-text h3{
+    font-weight: bold;
+}
+.main-text p{
+    font-size: 15px;
+}
+
+.nail {
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    grid-gap: 40px 80px;
+    justify-content: center;
+    height: 250px;
+    font-family: 'cafe24_sph';
+}
+.nail1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-radius: 20px 20px 20px 20px;
+    background-image: url("../img/관광일정.jpg");
+    background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px;
+}
+.nail1-text{
+    position: relative;
+    top: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+.nail2 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    border-radius: 20px 20px 20px 20px;
+    background-image: url("../img/추천일정.jpg");
+    background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: cover;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px;
+}
+.nail2-text{
+    position: relative;
+    top: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+.nail3 {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    border-radius: 20px 20px 20px 20px;
+    background-image: url("../img/나만의일정.jpg");
+    background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px;
+}
+.nail3-text{
+    position: relative;
+    top: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+.nail4 {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    border-radius: 20px 20px 20px 20px;
+    background-image: url("../img/제주상황.jpg");
+    background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: cover;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px;
+}
+.nail4-text{
+    position: relative;
+    top: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+.hotpl-title{
+    
+    position: absolute;
+    width: 200px;
+    top: 105%;
+    text-align: center;
+}
+li{
+    list-style: none;
+}
+.slide_wrapper{
+    
+    position: relative;
+    width: 1080px;
+    margin: 0 auto;
+    height: 250px;
+    overflow: hidden;
+}
+.slides{
+    position: absolute;
+    padding: 0;
+    left: 0;
+    top: 0;
+    transition: left 0.5s ease-out;
+}
+.slides li{
+    float: left;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.slides li img{
+    border-radius: 20px 20px 20px 20px;
+}
+.controls{
+    
+    text-align: center;
+    margin-top: 30px;
+
+}
+.controls span{
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px; 
+}
+.name{
+    margin-bottom: 15px;
+}
+.duty{
+    margin-bottom: 10px;
+}
