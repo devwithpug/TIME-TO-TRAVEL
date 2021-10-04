@@ -20,13 +20,13 @@
 	</head>
 	<body>
        <div class="logo item">
-           <a href="home?user_id=${sessionScope.user_id}"><img class="logo" src="/termproject/resources/img/logo.png"></a>
+           <a href="home"><img class="logo" src="/termproject/resources/img/logo.png"></a>
        </div>
        <div class="header item">
            <div class="headerbtn">
            <c:choose>
-	           	<c:when test="${sessionScope.idChk == true }">
-                    <button type="button"class="btn btn-info" onclick="location.href='mypage_main.do?user_id=${sessionScope.user_id}'">${sessionScope.user_id}님의 마이페이지</button>
+	           	<c:when test="${sessionScope.user != null}">
+                    <button type="button"class="btn btn-info">${sessionScope.user.nickname}(${sessionScope.user.name})님, 환영합니다!</button>
                     <button type="button"class="btn btn-info" onclick="logout();">로그아웃</button>
 	           	</c:when>
                <c:otherwise>
@@ -37,10 +37,10 @@
        </div>
        <div class="nav item">
            <ul class="navi">
-               <li><a href="home?user_id=${sessionScope.user_id}">Home</a></li>
-               <li><a href="review?user_id=${sessionScope.user_id}">여행 후기</a></li>
-               <li><a href="travelroot?user_id=${sessionScope.user_id}">여행 루트 공유</a></li>
-               <li><a href="mypage?user_id=${sessionScope.user_id}">마이페이지</a></li>
+               <li><a href="home">Home</a></li>
+               <li><a href="review">여행 후기</a></li>
+               <li><a href="travelroot">여행 계획 공유</a></li>
+               <li><a href="mypage">마이페이지</a></li>
                <li><a href="http://ncov.mohw.go.kr/" target="_blank">코로나 현황</a></li>
            </ul>
        </div>
@@ -55,13 +55,13 @@
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form class="">
+                    <form method="post" action="/login">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" class="form-control rounded-4" id="floatingInput" name="id">
                             <label for="floatingInput">아이디</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
+                            <input type="password" class="form-control rounded-4" id="floatingPassword" name="pwd">
                             <label for="floatingPassword">비밀번호</label>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">로그인</button>
@@ -74,13 +74,11 @@
             </div>
         </div>
     </div>
-
 	<script type="text/javascript">
 		function logout() {
 			if(confirm("정말 로그아웃 하시겠습니까?")) {
-				//예 눌렀을 경우
 				alert("정상적으로 로그아웃 되었습니다.");
-				location.href="logout.do";
+				location.href="login";
 			}
 		}
 	</script>

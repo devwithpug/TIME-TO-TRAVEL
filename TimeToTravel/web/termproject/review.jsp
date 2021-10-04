@@ -11,8 +11,6 @@
 			<div class="main">
 				<div class="container">
 					<h1>THIS IS REVIEW PAGE</h1>
-				</div>
-				<div class="container">
 					<table class="table table-striped table-hover">
 						<thead>
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th></tr>

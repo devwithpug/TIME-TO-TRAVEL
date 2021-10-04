@@ -15,55 +15,68 @@
 			<div class="main">
 				<br><br><br><br>
 				<div class="container" style="width: 600px">
-					<h1>THIS IS MYPAGE</h1>
-					<form name="mypage_form" action="profileUpdate.do" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="mypage_form" value="${dto.user_id }">
-						<div class="mb-3 row">
-							<label for="name" class="col-sm-3 col-form-label">이름</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="name" value="${dto.user_name }" readonly="readonly">
-							</div>
-						</div>
+					<c:choose>
+						<c:when test="${sessionScope.user == null}">
+							<h1>이곳은 회원 전용 페이지 입니다!</h1>
+							<marquee scrollamount=10>
+								<h1>
+									TIME TO TRAVEL의 새로운 회원이 되는 것은 어떠신가요?
+									여행을 좋아하는 다른 분들과 함께 귀중한 정보들을 공유해보세요!!!
+								</h1>
+							</marquee>
+							<img src="/termproject/resources/img/pug_move.gif">
+						</c:when>
+						<c:otherwise>
+							<h1>회원 정보 변경</h1>
+							<form name="mypage_form" action="profileUpdate.do" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="mypage_form" value="${dto.user_id }">
+								<div class="mb-3 row">
+									<label for="name" class="col-sm-3 col-form-label">이름</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="name" value="${dto.user_name }" readonly="readonly">
+									</div>
+								</div>
 
-						<div class="mb-3 row">
-							<label for="id" class="col-sm-3 col-form-label">아이디</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="id" value="${dto.user_id }" readonly="readonly">
-							</div>
-						</div>
+								<div class="mb-3 row">
+									<label for="id" class="col-sm-3 col-form-label">아이디</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="id" value="${dto.user_id }" readonly="readonly">
+									</div>
+								</div>
 
-						<div class="mb-3 row">
-							<label for="nickname" class="col-sm-3 col-form-label">닉네임</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="nickname" value="${dto.user_nick }">
-							</div>
-						</div>
+								<div class="mb-3 row">
+									<label for="nickname" class="col-sm-3 col-form-label">닉네임</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="nickname" value="${dto.user_nick }">
+									</div>
+								</div>
 
-						<div class="mb-3 row">
-							<label for="password" class="col-sm-3 col-form-label">기존 비밀번호</label>
-							<div class="col-sm-6">
-								<input type="password" class="form-control" id="password" value="">
-							</div>
-						</div>
-						<div class="mb-3 row">
-							<label for="newpassword" class="col-sm-3 col-form-label">신규 비밀번호</label>
-							<div class="col-sm-6">
-								<input type="password" class="form-control" id="newpassword" value="">
-							</div>
-						</div>
-						<div class="mb-3 row">
-							<label for="phone" class="col-sm-3 col-form-label">전화번호</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="phone" value="${dto.user_phone }">
-							</div>
-						</div>
-						<div class="btn_group">
-							<input type="button" class="btn btn-primary btn-primary"  value="정보수정" onclick="pwChkForm();">
-							<button type="button" class="btn btn-primary btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">회원탈퇴</button>
-						</div>
-						<br>
-					</form>
-
+								<div class="mb-3 row">
+									<label for="password" class="col-sm-3 col-form-label">기존 비밀번호</label>
+									<div class="col-sm-6">
+										<input type="password" class="form-control" id="password" value="">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="newpassword" class="col-sm-3 col-form-label">신규 비밀번호</label>
+									<div class="col-sm-6">
+										<input type="password" class="form-control" id="newpassword" value="">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="phone" class="col-sm-3 col-form-label">전화번호</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="phone" value="${dto.user_phone }">
+									</div>
+								</div>
+								<div class="btn_group">
+									<input type="button" class="btn btn-primary btn-primary"  value="정보수정" onclick="pwChkForm();">
+									<button type="button" class="btn btn-primary btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">회원탈퇴</button>
+								</div>
+								<br>
+							</form>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
