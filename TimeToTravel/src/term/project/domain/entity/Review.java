@@ -1,6 +1,7 @@
 package term.project.domain.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Review {
 
@@ -24,6 +25,15 @@ public class Review {
 
     public void plusViewCount() {
 
+    }
+
+    public Review(String authorId, String title, String description) {
+        this.postId = UUID.randomUUID().toString();
+        this.authorId = authorId;
+        this.title = title;
+        this.description = description;
+        this.createdAt = LocalDateTime.now();
+        this.viewCount = 0;
     }
 
     public Review(String postId, String title, String authorId, String description, LocalDateTime createdAt, Integer viewCount) {

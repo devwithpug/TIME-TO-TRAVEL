@@ -1,5 +1,9 @@
 package term.project.domain.entity;
 
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class User {
 
     private String userId;
@@ -21,10 +25,17 @@ public class User {
     }
 
     public User(String name, String email, String nickname, String password, String phoneNumber) {
+        this.userId = UUID.randomUUID().toString();
         this.name = name;
         this.email = email;
         this.nickname = nickname;
         this.password = password;
+
+        Matcher validPhoneNumber = Pattern.compile("\\d{3}-\\d{4}-\\d{4}").matcher(phoneNumber);
+        if (validPhoneNumber.matches()) {
+            phoneNumber = String.join("", phoneNumber.split("-"));
+        }
+
         this.phoneNumber = phoneNumber;
     }
 

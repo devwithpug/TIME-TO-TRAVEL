@@ -1,6 +1,7 @@
 package term.project.domain.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class TravelRoot {
 
@@ -26,12 +27,13 @@ public class TravelRoot {
 
     }
 
-    public TravelRoot(String authorId, LocalDateTime createdAt, String title, String description, Integer viewCount) {
+    public TravelRoot(String authorId, String title, String description) {
+        this.postId = UUID.randomUUID().toString();
         this.authorId = authorId;
-        this.createdAt = createdAt;
         this.title = title;
         this.description = description;
-        this.viewCount = viewCount;
+        this.createdAt = LocalDateTime.now();
+        this.viewCount = 0;
     }
 
     public TravelRoot(String postId, String title, String authorId, String description, LocalDateTime createdAt, Integer viewCount) {
