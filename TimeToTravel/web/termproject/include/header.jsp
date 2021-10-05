@@ -38,8 +38,8 @@
        <div class="nav item">
            <ul class="navi">
                <li><a href="home">Home</a></li>
-               <li><a href="review">여행 후기</a></li>
-               <li><a href="travelroot">여행 계획 공유</a></li>
+               <li><a href="review?page=0">여행 후기</a></li>
+               <li><a href="travelroot?page=0">여행 계획 공유</a></li>
                <li><a href="mypage">마이페이지</a></li>
                <li><a href="http://ncov.mohw.go.kr/" target="_blank">코로나 현황</a></li>
            </ul>
@@ -61,8 +61,8 @@
                             <label for="floatingInput">아이디</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-4" id="floatingPassword" name="pwd">
-                            <label for="floatingPassword">비밀번호</label>
+                            <input type="password" class="form-control rounded-4" id="pwd" name="pwd">
+                            <label for="pwd">비밀번호</label>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">로그인</button>
                         <hr class="my-4">

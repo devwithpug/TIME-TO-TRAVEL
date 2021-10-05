@@ -15,7 +15,11 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    font-family: 'cafe24_sph';
+    font-family: 'cafe24_sph', sans-serif;
+}
+
+#pwd, #pwd1, #pwd2 {
+    font-family: sans-serif;
 }
 
 body, html {
