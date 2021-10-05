@@ -5,8 +5,8 @@
          <div class="inner_wrap">
              <div class="footer_nav">
                  <a href="home" style="text-decoration: none !important"><li style="color:#868697">Home</li></a>
-                 <a href="review" style="text-decoration: none !important"><li style="color:#868697">여행 후기</li></a>
-                 <a href="travelroot" style="text-decoration: none !important"><li style="color:#868697">여행 계획 공유</li></a>
+                 <a href="review?page=0" style="text-decoration: none !important"><li style="color:#868697">여행 후기</li></a>
+                 <a href="travelroot?page=0" style="text-decoration: none !important"><li style="color:#868697">여행 계획 공유</li></a>
                  <a href="mypage" style="text-decoration: none !important"><li style="color:#868697">마이페이지</li></a>
                  <a href="http://ncov.mohw.go.kr/" target="_blank" style="text-decoration: none !important"><li style="color:#868697">코로나 현황</li></a>
              </div>

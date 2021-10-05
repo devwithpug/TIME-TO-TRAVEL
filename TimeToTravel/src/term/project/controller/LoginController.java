@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
             if (user != null) {
                 if (user.getPassword().equals(pwd)) {
                     req.getSession().setAttribute("user", user);
+                    System.out.println("유저 로그인 : " + user);
                 }
             }
             resp.sendRedirect("/home");
