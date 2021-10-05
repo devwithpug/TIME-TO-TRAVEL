@@ -36,7 +36,7 @@ public class TravelRoot {
         this.viewCount = 0;
     }
 
-    public TravelRoot(String postId, String title, String authorId, String description, LocalDateTime createdAt, Integer viewCount) {
+    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount) {
         this.postId = postId;
         this.title = title;
         this.authorId = authorId;
