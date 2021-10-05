@@ -11,38 +11,42 @@ public class TravelRoot {
     private String description;
     private LocalDateTime createdAt;
     private Integer viewCount = 0;
+    private Integer postNum;
 
     @Override
     public String toString() {
         return "TravelRoot{" +
                 "postId='" + postId + '\'' +
                 ", authorId='" + authorId + '\'' +
-                ", createdAt=" + createdAt +
                 ", title='" + title + '\'' +
+                ", createdAt=" + createdAt +
                 ", viewCount=" + viewCount +
+                ", postNum=" + postNum +
                 '}';
     }
 
     public void plusViewCount() {
-
+        this.viewCount++;
     }
 
-    public TravelRoot(String authorId, String title, String description) {
+    public TravelRoot(String authorId, String title, String description, Integer postNum) {
         this.postId = UUID.randomUUID().toString();
         this.authorId = authorId;
         this.title = title;
         this.description = description;
         this.createdAt = LocalDateTime.now();
         this.viewCount = 0;
+        this.postNum = postNum;
     }
 
-    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount) {
+    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum) {
         this.postId = postId;
         this.title = title;
         this.authorId = authorId;
         this.description = description;
         this.createdAt = createdAt;
         this.viewCount = viewCount;
+        this.postNum = postNum;
     }
 
     public String getPostId() {
@@ -91,5 +95,13 @@ public class TravelRoot {
 
     public void setViewCount(Integer viewCount) {
         this.viewCount = viewCount;
+    }
+
+    public Integer getPostNum() {
+        return postNum;
+    }
+
+    public void setPostNum(Integer postNum) {
+        this.postNum = postNum;
     }
 }

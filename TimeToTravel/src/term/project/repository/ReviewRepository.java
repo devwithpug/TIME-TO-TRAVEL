@@ -16,7 +16,7 @@ public class ReviewRepository implements Repository<Review, String> {
     @Override
     public Review create(Review entity) throws SQLException {
 
-        String sql = "insert into review values(?, ?, ?, ?, ?, ?)";
+        String sql = "insert into review values(?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = DBUtil.createPostStatement(
                 sql,
@@ -24,7 +24,8 @@ public class ReviewRepository implements Repository<Review, String> {
                 entity.getAuthorId(),
                 entity.getTitle(),
                 entity.getDescription(),
-                entity.getCreatedAt()
+                entity.getCreatedAt(),
+                entity.getPostNum()
         );
 
         stmt.execute();
@@ -48,7 +49,8 @@ public class ReviewRepository implements Repository<Review, String> {
                     rs.getString(3),
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
-                    rs.getInt(6)
+                    rs.getInt(6),
+                    rs.getInt(7)
             );
         }
         return null;
@@ -66,19 +68,23 @@ public class ReviewRepository implements Repository<Review, String> {
         return getReviews(rs);
     }
 
-    public List<Review> getAllByPaging(int limit, int offset) throws SQLException {
+    public Integer getAllCount() throws SQLException {
 
-//        String sql1 = "select count(*) from review.post_id";
-        String sql2 = "select * from review limit ? offset ?";
+        String sql = "select count(*) from review";
 
         Connection conn = DBUtil.getConn();
-//        Statement stmt1 = conn.createStatement();
-//        ResultSet rs1 = stmt1.executeQuery(sql1);
-//
-//        if (!rs1.next()) {
-//            return List.of();
-//        }
-//        int count = rs1.getInt(1);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        rs.next();
+        return rs.getInt(1);
+    }
+
+    public List<Review> getAllByPaging(int limit, int offset) throws SQLException {
+
+        String sql2 = "select * from review r order by r.created_at desc limit ? offset ?";
+
+        Connection conn = DBUtil.getConn();
 
         PreparedStatement stmt2 = conn.prepareStatement(sql2);
         stmt2.setInt(1, limit);
@@ -98,7 +104,8 @@ public class ReviewRepository implements Repository<Review, String> {
                     rs.getString(3),
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
-                    rs.getInt(6)
+                    rs.getInt(6),
+                    rs.getInt(7)
             );
             result.add(review);
         }
@@ -114,6 +121,17 @@ public class ReviewRepository implements Repository<Review, String> {
         stmt.setString(1, title);
         stmt.setString(2, description);
         stmt.setString(3, postId);
+        stmt.execute();
+    }
+
+    public void updateViewCount(String postId, Integer count) throws SQLException {
+
+        String sql = "update review set view_count = ? where post_id = ?";
+
+        Connection conn = DBUtil.getConn();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, count);
+        stmt.setString(2, postId);
         stmt.execute();
     }
 

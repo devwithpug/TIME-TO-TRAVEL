@@ -16,7 +16,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
     @Override
     public TravelRoot create(TravelRoot entity) throws SQLException {
 
-        String sql = "insert into travel_root values(?, ?, ?, ?, ?, ?)";
+        String sql = "insert into travel_root values(?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = DBUtil.createPostStatement(
                 sql,
@@ -24,7 +24,8 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                 entity.getAuthorId(),
                 entity.getTitle(),
                 entity.getDescription(),
-                entity.getCreatedAt()
+                entity.getCreatedAt(),
+                entity.getPostNum()
         );
 
         stmt.execute();
@@ -48,7 +49,8 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                     rs.getString(3),
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
-                    rs.getInt(6)
+                    rs.getInt(6),
+                    rs.getInt(7)
             );
         }
         return null;
@@ -64,6 +66,18 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         ResultSet rs = stmt.executeQuery(sql);
 
         return getTravelRoots(rs);
+    }
+
+    public Integer getAllCount() throws SQLException {
+
+        String sql = "select count(*) from review";
+
+        Connection conn = DBUtil.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        rs.next();
+        return rs.getInt(1);
     }
 
     public List<TravelRoot> getAllByPaging(int limit, int offset) throws SQLException {
@@ -89,7 +103,8 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                     rs.getString(3),
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
-                    rs.getInt(6)
+                    rs.getInt(6),
+                    rs.getInt(7)
             );
             result.add(travelRoot);
         }

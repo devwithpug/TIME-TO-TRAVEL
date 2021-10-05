@@ -13,11 +13,19 @@ public class ReviewController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("/termproject/review.jsp");
 
-        String userId = req.getParameter("user_id");
-        // TODO - userId
-
-        rd.forward(req, resp);
+        String postId = req.getParameter("id");
+        String page = req.getParameter("page");
+        RequestDispatcher rd;
+        if (postId == null && page == null) {
+            resp.sendRedirect("/home");
+        } else {
+            if (postId == null) {
+                rd = req.getRequestDispatcher("/termproject/review.jsp");
+            } else {
+                rd = req.getRequestDispatcher("/termproject/review_detail.jsp");
+            }
+            rd.forward(req, resp);
+        }
     }
 }

@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">내용</label>
-                                    <textarea type="text" class="form-control" rows="5" id="content" name="description" placeholder="내용" minlength="5" maxlength="2048"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="content" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="image">사진 첨부</label>
