@@ -10,23 +10,26 @@
     <title>TIME TO TRAVEL - 글쓰기</title>
 </head>
 <body>
+<%
+    String postId = request.getParameter("id");
+    String currentPage = request.getParameter("page");
+    ReviewRepository reviewRepository = new ReviewRepository();
+    UserRepository userRepository = new UserRepository();
+    Review review = null;
+    User user = null;
+    try {
+        review = reviewRepository.getOneById(postId);
+        review.plusViewCount();
+        reviewRepository.updateViewCount(review.getPostId(), review.getViewCount());
+
+        user = userRepository.getOneById(review.getAuthorId());
+    } catch (SQLException e) {
+    }
+%>
 <div class="wrapper">
     <jsp:include page="/termproject/include/header.jsp"></jsp:include>
     <div class="main">
-        <%
-            ReviewRepository reviewRepository = new ReviewRepository();
-            UserRepository userRepository = new UserRepository();
-            Review review = null;
-            User user = null;
-            try {
-                review = reviewRepository.getOneById(request.getParameter("id"));
-                review.plusViewCount();
-                reviewRepository.updateViewCount(review.getPostId(), review.getViewCount());
 
-                user = userRepository.getOneById(review.getAuthorId());
-            } catch (SQLException e) {
-            }
-        %>
         <br><br><br><br>
         <div class="container">
             <h1>게시글</h1>
@@ -51,9 +54,9 @@
                     <h1 class="form-control">사진</h1>
                 </div>
                 <br><br>
-                <a class="btn btn-secondary" onclick="cancel()">수정</a>
-                <a class="btn btn-secondary" onclick="cancel()">삭제</a>
-                <a class="btn btn-secondary" onclick="cancel()">목록</a>
+                <a class="btn btn-info" href="/write?type=review&page=<%=currentPage%>&id=<%=postId%>">수정</a>
+                <a class="btn btn-warning" onclick="cancel()">삭제</a>
+                <a class="btn btn-secondary" href="/review?page=<%=currentPage%>">목록</a>
             </form>
         </div>
     </div>
@@ -62,8 +65,8 @@
 </body>
 <script type="text/javascript">
     function cancel() {
-        if(confirm("작성한 내용이 모두 삭제됩니다.\n정말 돌아가시겠습니까?")) {
-            location.href="";
+        if(confirm("게시글을 삭제합니다.\n되돌릴 수 없습니다!")) {
+            location.href="review?id=<%=postId%>&delete=true";
         }
     }
 </script>

@@ -1,5 +1,7 @@
 package term.project.controller;
 
+import term.project.repository.ReviewRepository;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(value = "/review")
 public class ReviewController extends HttpServlet {
@@ -16,16 +19,27 @@ public class ReviewController extends HttpServlet {
 
         String postId = req.getParameter("id");
         String page = req.getParameter("page");
+        String delete = req.getParameter("delete");
         RequestDispatcher rd;
-        if (postId == null && page == null) {
-            resp.sendRedirect("/home");
-        } else {
-            if (postId == null) {
-                rd = req.getRequestDispatcher("/termproject/review.jsp");
+
+        if (delete == null) {
+            if (postId == null && page == null) {
+                resp.sendRedirect("/home");
             } else {
-                rd = req.getRequestDispatcher("/termproject/review_detail.jsp");
+                if (postId == null) {
+                    rd = req.getRequestDispatcher("/termproject/review.jsp");
+                } else {
+                    rd = req.getRequestDispatcher("/termproject/review_detail.jsp");
+                }
+                rd.forward(req, resp);
             }
-            rd.forward(req, resp);
+        } else {
+            ReviewRepository reviewRepository = new ReviewRepository();
+            try {
+                reviewRepository.delete(postId);
+            } catch (SQLException e) {
+            }
+            resp.sendRedirect("/review?page=0");
         }
     }
 }

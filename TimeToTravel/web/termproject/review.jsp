@@ -38,7 +38,7 @@
 							for (Review review : reviews) {
 								out.println("<tr>");
 								out.println("<td width=5% style='word-break:break-all'>"+review.getPostNum()+"</td>");
-								out.println("<td width=60% style='word-break:break-all'><a href='/review?id="+ review.getPostId() + "'>" + review.getTitle()+"</a></td>");
+								out.println("<td width=58% style='word-break:break-all'><a href='/review?page=" + currentPage + "&id="+ review.getPostId() + "'>" + review.getTitle()+"</a></td>");
 								User user = null;
 								try {
 									user = userRepository.getOneById(review.getAuthorId());
@@ -46,7 +46,7 @@
 								}
 								out.println("<td width=10% style='word-break:break-all'>"+user.getNickname()+"</td>");
 								out.println("<td width=20% style='word-break:break-all'>"+review.getCreatedAt().toString()+"</td>");
-								out.println("<td width=5% style='word-break:break-all'>"+review.getViewCount()+"</td>");
+								out.println("<td width=7% style='word-break:break-all'>"+review.getViewCount()+"</td>");
 								out.println("</tr>");
 							}
 

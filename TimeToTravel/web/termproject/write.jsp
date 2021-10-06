@@ -1,3 +1,6 @@
+<%@ page import="term.project.repository.ReviewRepository" %>
+<%@ page import="term.project.domain.entity.Review" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -7,6 +10,8 @@
     <body>
         <%
             String type = request.getParameter("type");
+            String currentPage = request.getParameter("page");
+            String id = request.getParameter("id");
         %>
         <div class="wrapper">
             <jsp:include page="/termproject/include/header.jsp"></jsp:include>
@@ -25,10 +30,44 @@
                             <img src="/termproject/resources/img/pug_move.gif">
                         </div>
                     </c:when>
+                    <c:when test="<%=id != null%>">
+                        <%
+                            ReviewRepository reviewRepository = new ReviewRepository();
+                            Review review = null;
+                            try {
+                                review = reviewRepository.getOneById(id);
+                            } catch (SQLException e) {
+                            }
+                        %>
+                        <br><br><br><br>
+                        <div class="container">
+                            <h1>글쓰기 (수정) - <%=(type.equals("review")? "여행 후기" : "여행 계획 공유")%></h1>
+                            <form method="post" action="/write?page=<%=currentPage%>" enctype="multipart/form-data">
+                                <input type="text" class="form-control" name="type" hidden="hidden" value="<%=type%>">
+                                <input type="text" class="form-control" name="postId" hidden="hidden" value="<%=id%>">
+                                <div class="form-group">
+                                    <label for="title2">제목</label>
+                                    <input type="text" class="form-control" id="title2" placeholder="제목" name="title" minlength="5" maxlength="100" value="<%=review.getTitle()%>" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="content2">내용</label>
+                                    <textarea type="text" class="form-control" rows="5" id="content2" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"><%=review.getDescription()%></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image2">사진 첨부</label>
+                                    <input type="file" class="form-control" id="image2" name="input">
+                                </div>
+                                <br><br>
+                                <button type="submit" class="btn btn-primary">등록</button>
+                                <a class="btn btn-secondary" onclick="cancel()">취소</a>
+                            </form>
+                        </div>
+                    </c:when>
                     <c:otherwise>
                         <br><br><br><br>
                         <div class="container">
                             <h1>글쓰기 - <%=(type.equals("review")? "여행 후기" : "여행 계획 공유")%></h1>
+                            <!-- <form method="post" action="/write" enctype="multipart/form-data"> -->
                             <form method="post" action="/write">
                                 <input type="text" class="form-control" id="type" name="type" hidden="hidden" value="<%=type%>">
                                 <div class="form-group">
