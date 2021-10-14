@@ -91,11 +91,14 @@
                         <div class="card p-3">
                             <form method="post" action="/comment">
                                 <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <small class="font-weight-bold text-primary"><%=((User)session.getAttribute("user")).getNickname()%></small>
+                                    </div>
                                     <div class="col-10">
                                         <input type="hidden" name="type" value="review">
                                         <input type="hidden" name="postId" value="<%=review.getPostId()%>">
                                         <input type="hidden" name="page" value="<%=currentPage%>">
-                                        <input type="text" class="form-control" name="comment" placeholder="댓글은 삭제 및 수정이 불가능하니 신중하게 작성해주세요." required="required">
+                                        <input type="text" class="form-control" name="comment" placeholder="댓글은 삭제 및 수정이 불가능하니 신중하게 작성해주세요." required="required" minlength="2" maxlength="256">
                                     </div>
                                     <div class="col-auto">
                                         <button type="submit" class="btn btn-primary">댓글 등록</button>
