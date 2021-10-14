@@ -12,6 +12,7 @@ public class Review {
     private LocalDateTime createdAt;
     private Integer viewCount = 0;
     private Integer postNum;
+    private String fileName;
 
     @Override
     public String toString() {
@@ -22,6 +23,7 @@ public class Review {
                 ", createdAt=" + createdAt +
                 ", viewCount=" + viewCount +
                 ", postNum=" + postNum +
+                ", fileName=" + fileName +
                 '}';
     }
 
@@ -29,7 +31,7 @@ public class Review {
         this.viewCount++;
     }
 
-    public Review(String authorId, String title, String description, Integer postNum) {
+    public Review(String authorId, String title, String description, Integer postNum, String fileName) {
         this.postId = UUID.randomUUID().toString();
         this.authorId = authorId;
         this.title = title;
@@ -37,9 +39,10 @@ public class Review {
         this.createdAt = LocalDateTime.now();
         this.viewCount = 0;
         this.postNum = postNum;
+        this.fileName = fileName;
     }
 
-    public Review(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum) {
+    public Review(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum, String fileName) {
         this.postId = postId;
         this.title = title;
         this.authorId = authorId;
@@ -47,6 +50,7 @@ public class Review {
         this.createdAt = createdAt;
         this.viewCount = viewCount;
         this.postNum = postNum;
+        this.fileName = fileName;
     }
 
     public String getPostId() {
@@ -103,5 +107,13 @@ public class Review {
 
     public void setPostNum(Integer postNum) {
         this.postNum = postNum;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

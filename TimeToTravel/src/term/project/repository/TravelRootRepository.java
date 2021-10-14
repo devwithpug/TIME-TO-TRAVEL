@@ -16,7 +16,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
     @Override
     public TravelRoot create(TravelRoot entity) throws SQLException {
 
-        String sql = "insert into travel_root values(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into travel_root values(?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = DBUtil.createPostStatement(
                 sql,
@@ -25,7 +25,8 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                 entity.getTitle(),
                 entity.getDescription(),
                 entity.getCreatedAt(),
-                entity.getPostNum()
+                entity.getPostNum(),
+                entity.getFileName()
         );
 
         stmt.execute();
@@ -50,7 +51,8 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
                     rs.getInt(6),
-                    rs.getInt(7)
+                    rs.getInt(7),
+                    rs.getString(8)
             );
         }
         return null;
@@ -104,7 +106,8 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
                     rs.getInt(6),
-                    rs.getInt(7)
+                    rs.getInt(7),
+                    rs.getString(8)
             );
             result.add(travelRoot);
         }

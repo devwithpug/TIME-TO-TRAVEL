@@ -1,6 +1,7 @@
 <%@ page import="term.project.repository.ReviewRepository" %>
 <%@ page import="term.project.domain.entity.Review" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="term.project.util.FileUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -12,6 +13,8 @@
             String type = request.getParameter("type");
             String currentPage = request.getParameter("page");
             String id = request.getParameter("id");
+            String path = application.getRealPath("tmp");
+
         %>
         <div class="wrapper">
             <jsp:include page="/termproject/include/header.jsp"></jsp:include>
@@ -50,12 +53,14 @@
                                     <input type="text" class="form-control" id="title2" placeholder="제목" name="title" minlength="5" maxlength="100" value="<%=review.getTitle()%>" required="required">
                                 </div>
                                 <div class="form-group">
-                                    <label for="content2">내용</label>
-                                    <textarea type="text" class="form-control" rows="5" id="content2" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"><%=review.getDescription()%></textarea>
+                                    <details>
+                                        <summary>첨부 사진</summary>
+                                        <img class="form-control" src="<%=FileUtil.getImageDir() + "/" + review.getFileName()%>">
+                                    </details>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image2">사진 첨부</label>
-                                    <input type="file" class="form-control" id="image2" name="input">
+                                    <label for="content2">내용</label>
+                                    <textarea type="text" class="form-control" rows="5" id="content2" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"><%=review.getDescription()%></textarea>
                                 </div>
                                 <br><br>
                                 <button type="submit" class="btn btn-primary">등록</button>
@@ -67,9 +72,9 @@
                         <br><br><br><br>
                         <div class="container">
                             <h1>글쓰기 - <%=(type.equals("review")? "여행 후기" : "여행 계획 공유")%></h1>
-                            <!-- <form method="post" action="/write" enctype="multipart/form-data"> -->
-                            <form method="post" action="/write">
+                            <form method="post" action="/write" enctype="multipart/form-data" data="multipart">
                                 <input type="text" class="form-control" id="type" name="type" hidden="hidden" value="<%=type%>">
+                                <input type="text" class="form-control" id="path" name="path" hidden="hidden" value="<%=application.getRealPath("images")%>">
                                 <div class="form-group">
                                     <label for="title">제목</label>
                                     <input type="text" class="form-control" id="title" placeholder="제목" name="title" minlength="5" maxlength="100" required="required">

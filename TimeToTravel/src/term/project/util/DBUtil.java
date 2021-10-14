@@ -37,7 +37,7 @@ public class DBUtil {
     }
 
     public static PreparedStatement createPostStatement(
-            String sql, String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer postNum
+            String sql, String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer postNum, String fileName
     ) throws SQLException {
         if (conn == null) {
             conn = DriverManager.getConnection(url, user, pwd);
@@ -51,6 +51,7 @@ public class DBUtil {
         stmt.setObject(5, createdAt);
         stmt.setInt(6, 0);
         stmt.setInt(7, postNum);
+        stmt.setString(8, fileName);
 
         return stmt;
     }

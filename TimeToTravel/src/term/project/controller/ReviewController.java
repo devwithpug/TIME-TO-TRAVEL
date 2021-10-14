@@ -1,6 +1,8 @@
 package term.project.controller;
 
+import term.project.domain.entity.Review;
 import term.project.repository.ReviewRepository;
+import term.project.util.FileUtil;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +38,10 @@ public class ReviewController extends HttpServlet {
         } else {
             ReviewRepository reviewRepository = new ReviewRepository();
             try {
+                Review review = reviewRepository.getOneById(postId);
+                if (review.getFileName() != null) {
+                    FileUtil.deleteFile(req, review.getFileName());
+                }
                 reviewRepository.delete(postId);
             } catch (SQLException e) {
             }

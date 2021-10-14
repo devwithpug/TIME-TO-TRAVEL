@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -35,20 +36,20 @@ public class WriteController extends HttpServlet {
     }
 
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setCharacterEncoding("UTF-8");
-        String type = req.getParameter("type");
+        MultipartRequest request = FileUtil.multipartRequest(req);
 
-        // MultipartRequest multipartRequest = new MultipartRequest(req, "./", 5000 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+        String type = request.getParameter("type");
+
         if (type != null) {
-            String postId = req.getParameter("postId");
-            String title = req.getParameter("title");
-            String description = req.getParameter("description");
+            String postId = request.getParameter("postId");
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
             User user = (User) req.getSession().getAttribute("user");
-            String currentPage = req.getParameter("page");
+            String currentPage = request.getParameter("page");
+            String fileName = validateFileAndExtractName(request);
 
             if (type.equals("review")) {
                 ReviewRepository reviewRepository = new ReviewRepository();
@@ -58,7 +59,7 @@ public class WriteController extends HttpServlet {
                     } else {
                         currentPage = "0";
                         Integer postNum = reviewRepository.getAllCount() + 1;
-                        Review review = new Review(user.getUserId(), title, description, postNum);
+                        Review review = new Review(user.getUserId(), title, description, postNum, fileName);
                         postId = review.getPostId();
                         reviewRepository.create(review);
                         System.out.println("새로운 여행 후기 : " + review);
@@ -74,7 +75,7 @@ public class WriteController extends HttpServlet {
                     } else {
                         currentPage = "0";
                         Integer postNum = travelRootRepository.getAllCount() + 1;
-                        TravelRoot travelRoot = new TravelRoot(user.getUserId(), title, description, postNum);
+                        TravelRoot travelRoot = new TravelRoot(user.getUserId(), title, description, postNum, fileName);
                         postId = travelRoot.getPostId();
                         travelRootRepository.create(travelRoot);
                         System.out.println("새로운 여행 계획 공유 : " + travelRoot);
@@ -86,5 +87,18 @@ public class WriteController extends HttpServlet {
         } else {
             resp.sendRedirect("/home");
         }
+    }
+
+    private String validateFileAndExtractName(MultipartRequest req) {
+        File input = req.getFile("input");
+        if (input != null) {
+            String name = input.getName();
+            if (name.endsWith("jpeg") || name.endsWith("jpg") || name.endsWith("png")) {
+                return name;
+            } else {
+                input.delete();
+            }
+        }
+        return null;
     }
 }

@@ -16,7 +16,7 @@ public class ReviewRepository implements Repository<Review, String> {
     @Override
     public Review create(Review entity) throws SQLException {
 
-        String sql = "insert into review values(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into review values(?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = DBUtil.createPostStatement(
                 sql,
@@ -25,7 +25,8 @@ public class ReviewRepository implements Repository<Review, String> {
                 entity.getTitle(),
                 entity.getDescription(),
                 entity.getCreatedAt(),
-                entity.getPostNum()
+                entity.getPostNum(),
+                entity.getFileName()
         );
 
         stmt.execute();
@@ -50,7 +51,8 @@ public class ReviewRepository implements Repository<Review, String> {
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
                     rs.getInt(6),
-                    rs.getInt(7)
+                    rs.getInt(7),
+                    rs.getString(8)
             );
         }
         return null;
@@ -105,7 +107,8 @@ public class ReviewRepository implements Repository<Review, String> {
                     rs.getString(4),
                     rs.getObject(5, LocalDateTime.class),
                     rs.getInt(6),
-                    rs.getInt(7)
+                    rs.getInt(7),
+                    rs.getString(8)
             );
             result.add(review);
         }
