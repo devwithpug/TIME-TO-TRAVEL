@@ -22,8 +22,13 @@
     CommentRepository commentRepository = new CommentRepository();
 
     Review review = null;
+    User author = null;
     User user = null;
     List<Comment> comments = null;
+
+    if (session.getAttribute("user") != null) {
+        user = (User) session.getAttribute("user");
+    }
 
     try {
         review = reviewRepository.getOneById(postId);
@@ -36,7 +41,7 @@
             comment.setUserId(u.getNickname());
         }
 
-        user = userRepository.getOneById(review.getAuthorId());
+        author = userRepository.getOneById(review.getAuthorId());
     } catch (SQLException e) {
     }
 %>
@@ -53,7 +58,7 @@
             </div>
             <div class="form-group">
                 <label for="author">작성자</label>
-                <input type="text" class="form-control" id="author" name="author" value="<%=user.getNickname()%>" readonly="readonly">
+                <input type="text" class="form-control" id="author" name="author" value="<%=author.getNickname()%>" readonly="readonly">
             </div>
             <div class="form-group">
                 <label for="title">조회수</label>
@@ -92,7 +97,7 @@
                             <form method="post" action="/comment">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
-                                        <small class="font-weight-bold text-primary"><%=((User)session.getAttribute("user")).getNickname()%></small>
+                                        <small class="font-weight-bold text-primary"><%=user.getNickname()%></small>
                                     </div>
                                     <div class="col-10">
                                         <input type="hidden" name="type" value="review">
@@ -110,8 +115,20 @@
                 </c:choose>
             </div>
             <br><br>
-            <a class="btn btn-info" href="/write?type=review&page=<%=currentPage%>&id=<%=postId%>">수정</a>
-            <a class="btn btn-warning" onclick="cancel()">삭제</a>
+            <c:choose>
+                <c:when test="${sessionScope != null}">
+                    <%
+                        pageContext.setAttribute("user", user);
+                        pageContext.setAttribute("authorId", review.getAuthorId());
+                    %>
+                    <c:choose>
+                        <c:when test="${user.userId == authorId}">
+                            <a class="btn btn-info" href="/write?type=review&page=<%=currentPage%>&id=<%=postId%>">수정</a>
+                            <a class="btn btn-warning" onclick="cancel()">삭제</a>
+                        </c:when>
+                    </c:choose>
+                </c:when>
+            </c:choose>
             <a class="btn btn-secondary" href="/review?page=<%=currentPage%>">목록</a>
         </div>
     </div>
