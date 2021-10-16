@@ -122,4 +122,14 @@ public class CommentRepository implements Repository<Comment, String> {
         stmt.execute();
     }
 
+    public void deleteByUserId(String id) throws SQLException {
+
+        String sql = "delete from comment where author_id = ?";
+
+        Connection conn = DBUtil.getConn();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, id);
+        stmt.execute();
+    }
+
 }

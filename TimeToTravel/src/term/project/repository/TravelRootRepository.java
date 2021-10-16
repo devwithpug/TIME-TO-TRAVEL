@@ -135,6 +135,15 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, id);
         stmt.execute();
+    }
 
+    public void deleteByUserId(String id) throws SQLException {
+
+        String sql = "delete from travel_root where author_id = ?";
+
+        Connection conn = DBUtil.getConn();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, id);
+        stmt.execute();
     }
 }

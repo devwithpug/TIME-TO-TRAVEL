@@ -1,6 +1,7 @@
 package term.project.controller;
 
 import term.project.domain.entity.Review;
+import term.project.repository.CommentRepository;
 import term.project.repository.ReviewRepository;
 import term.project.util.FileUtil;
 
@@ -37,7 +38,9 @@ public class ReviewController extends HttpServlet {
             }
         } else {
             ReviewRepository reviewRepository = new ReviewRepository();
+            CommentRepository commentRepository = new CommentRepository();
             try {
+                commentRepository.deleteByPostId(postId);
                 Review review = reviewRepository.getOneById(postId);
                 if (review.getFileName() != null) {
                     FileUtil.deleteFile(req, review.getFileName());

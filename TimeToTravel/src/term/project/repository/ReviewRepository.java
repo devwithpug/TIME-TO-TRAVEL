@@ -148,4 +148,14 @@ public class ReviewRepository implements Repository<Review, String> {
         stmt.setString(1, id);
         stmt.execute();
     }
+
+    public void deleteByUserId(String id) throws SQLException {
+
+        String sql = "delete from review where author_id = ?";
+
+        Connection conn = DBUtil.getConn();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, id);
+        stmt.execute();
+    }
 }

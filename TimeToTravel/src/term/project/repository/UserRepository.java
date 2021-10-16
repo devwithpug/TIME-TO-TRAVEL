@@ -132,7 +132,7 @@ public class UserRepository implements Repository<User, String> {
     @Override
     public void delete(String id) throws SQLException {
 
-        String sql = "";
+        String sql = "delete from user where user_id = ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);
