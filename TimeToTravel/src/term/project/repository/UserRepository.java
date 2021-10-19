@@ -111,11 +111,9 @@ public class UserRepository implements Repository<User, String> {
         return result;
     }
 
-    public void update(String userId, String nickname, String password, String phoneNumber, String prefType, String prefPreference, String prefFlight, String prefRoom, String prefPlan, String prefTransport, String prefMeal, String prefTendency) throws SQLException {
+    public void update(String userId, String nickname, String password, String phoneNumber) throws SQLException {
 
-        String sql = "update user " +
-                "set nickname = ?, password = ?, phone_number = ?, pref_type = ?, pref_preference = ?, pref_flight = ?, pref_room = ?, pref_plan = ?, pref_transport = ?, pref_meal = ?, pref_tendency = ? " +
-                "where user_id = ?";
+        String sql = "update user set nickname = ?, password = ?, phone_number = ? where user_id = ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -123,14 +121,24 @@ public class UserRepository implements Repository<User, String> {
         stmt.setString(2, password);
         stmt.setString(3, phoneNumber);
         stmt.setString(4, userId);
-        stmt.setString(5, userId);
-        stmt.setString(6, userId);
-        stmt.setString(7, userId);
-        stmt.setString(8, userId);
+        stmt.execute();
+    }
+
+    public void updatePref(String userId, String prefType, String prefPreference, String prefFlight, String prefRoom, String prefPlan, String prefTransport, String prefMeal, String prefTendency) throws SQLException {
+
+        String sql = "update user set pref_type = ?, pref_preference = ?, pref_flight = ?, pref_room = ?, pref_plan = ?, pref_transport = ?, pref_meal = ?, pref_tendency = ? where user_id = ?";
+
+        Connection conn = DBUtil.getConn();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, prefType);
+        stmt.setString(2, prefPreference);
+        stmt.setString(3, prefFlight);
+        stmt.setString(4, prefRoom);
+        stmt.setString(5, prefPlan);
+        stmt.setString(6, prefTransport);
+        stmt.setString(7, prefMeal);
+        stmt.setString(8, prefTendency);
         stmt.setString(9, userId);
-        stmt.setString(10, userId);
-        stmt.setString(11, userId);
-        stmt.setString(12, userId);
         stmt.execute();
     }
 

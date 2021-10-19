@@ -41,6 +41,7 @@
 								</c:when>
 							</c:choose>
 							<h1>회원 정보 변경</h1>
+							<br>
 							<form name="mypage_form" action="/mypage" method="post">
 								<%
 									User user = (User) session.getAttribute("user");
@@ -85,6 +86,7 @@
 									</div>
 								</div>
 								<div class="btn_group">
+									<input type="button" class="btn btn-primary btn-info" onclick="location.href='/mypref'" value="여행타입">
 									<input type="submit" class="btn btn-primary btn-primary"  value="정보수정">
 									<button type="button" class="btn btn-primary btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">회원탈퇴</button>
 								</div>

@@ -55,7 +55,7 @@
 							<input type="radio" class="btn-check" name="prf1" id="prf1_2" value="relaxed" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf1_2">느긋한 휴양자 형</label>
 							<input type="radio" class="btn-check" name="prf1" id="prf1_3" value="explorer" autocomplete="off">
-							<label class="btn btn-outline-primary" for="prf1_3">열혈 탐헝가 형</label>
+							<label class="btn btn-outline-primary" for="prf1_3">열혈 탐험가 형</label>
 						</div>
 						<br>
 						<p class="form-label">다음 중 내가 선호하는 여행은?</p>
