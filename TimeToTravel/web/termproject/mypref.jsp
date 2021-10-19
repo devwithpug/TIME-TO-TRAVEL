@@ -117,7 +117,7 @@
 								<div class="btn-group mx-auto d-table" role="group">
 									<input type="radio" class="btn-check" name="prf8" id="prf8_1" value="tour" autocomplete="off" <% out.print((prefTendency.equals("tour")) ? "checked" : "");%>>
 									<label class="btn btn-outline-primary" for="prf8_1">관광</label>
-									<input type="radio" class="btn-check" name="prf8" id="prf8_2" value="relaxed" autocomplete="off" <% out.print((prefTendency.equals("relaxed")) ? "checked" : "");%>>
+									<input type="radio" class="btn-check" name="prf8" id="prf8_2" value="relax" autocomplete="off" <% out.print((prefTendency.equals("relax")) ? "checked" : "");%>>
 									<label class="btn btn-outline-primary" for="prf8_2">휴양</label>
 								</div>
 

@@ -112,7 +112,7 @@
 						<div class="btn-group mx-auto d-table" role="group">
 							<input type="radio" class="btn-check" name="prf8" id="prf8_1" value="tour" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf8_1">관광</label>
-							<input type="radio" class="btn-check" name="prf8" id="prf8_2" value="relaxed" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf8" id="prf8_2" value="relax" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf8_2">휴양</label>
 						</div>
 
