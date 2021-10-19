@@ -38,6 +38,14 @@ public class SignUpController extends HttpServlet {
         String pwd2 = req.getParameter("pwd2");
         String nickname = req.getParameter("nickname");
         String phoneNumber = req.getParameter("phoneNumber");
+        String prf1 = req.getParameter("prf1");
+        String prf2 = req.getParameter("prf2");
+        String prf3 = req.getParameter("prf3");
+        String prf4 = req.getParameter("prf4");
+        String prf5 = req.getParameter("prf5");
+        String prf6 = req.getParameter("prf6");
+        String prf7 = req.getParameter("prf7");
+        String prf8 = req.getParameter("prf8");
 
         UserRepository userRepository = new UserRepository();
         String error = null;
@@ -45,7 +53,7 @@ public class SignUpController extends HttpServlet {
 
         if (isValidSignUpRequest(name, email, pwd1, pwd2, nickname, phoneNumber)) {
 
-            User user = new User(name, email, nickname, pwd1, phoneNumber);
+            User user = new User(name, email, nickname, pwd1, phoneNumber, prf1, prf2, prf3, prf4, prf5, prf6, prf7, prf8);
 
             try {
                 if (userRepository.isExistsByEmail(email)) {
