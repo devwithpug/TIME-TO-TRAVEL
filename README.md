@@ -25,8 +25,6 @@
 │       └── project
 │           ├── controller
 │           ├── domain
-│           │   ├── dto
-│           │   └── entity
 │           ├── repository
 │           └── util
 └── web
@@ -42,7 +40,11 @@
         │   ├── img
         │   └── js
         ├── home.jsp
+        ├── mypage.jsp
+        ├── mypref.jsp
         ├── review.jsp
+        ├── review_detail.jsp
         ├── signup.jsp
-        └── travelroot.jsp
+        ├── travelroot.jsp
+        └── write.jsp
 ```
