@@ -1,4 +1,4 @@
-package term.project.domain.entity;
+package term.project.domain;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

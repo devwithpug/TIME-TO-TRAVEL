@@ -1,6 +1,6 @@
 package term.project.controller;
 
-import term.project.domain.entity.Review;
+import term.project.domain.Review;
 import term.project.repository.CommentRepository;
 import term.project.repository.ReviewRepository;
 import term.project.util.FileUtil;

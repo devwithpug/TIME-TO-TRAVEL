@@ -1,9 +1,9 @@
 <%@ page import="term.project.repository.ReviewRepository" %>
-<%@ page import="term.project.domain.entity.Review" %>
+<%@ page import="term.project.domain.Review" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="term.project.repository.UserRepository" %>
-<%@ page import="term.project.domain.entity.User" %>
+<%@ page import="term.project.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>

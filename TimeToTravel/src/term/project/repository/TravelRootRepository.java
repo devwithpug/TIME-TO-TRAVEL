@@ -1,6 +1,6 @@
 package term.project.repository;
 
-import term.project.domain.entity.TravelRoot;
+import term.project.domain.TravelRoot;
 import term.project.util.DBUtil;
 
 import java.sql.*;

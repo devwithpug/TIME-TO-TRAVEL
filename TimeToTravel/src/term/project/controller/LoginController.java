@@ -1,6 +1,6 @@
 package term.project.controller;
 
-import term.project.domain.entity.User;
+import term.project.domain.User;
 import term.project.repository.UserRepository;
 
 import javax.servlet.ServletException;

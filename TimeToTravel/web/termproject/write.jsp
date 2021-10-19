@@ -1,5 +1,5 @@
 <%@ page import="term.project.repository.ReviewRepository" %>
-<%@ page import="term.project.domain.entity.Review" %>
+<%@ page import="term.project.domain.Review" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="term.project.util.FileUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>

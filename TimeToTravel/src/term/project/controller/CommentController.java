@@ -1,7 +1,7 @@
 package term.project.controller;
 
-import term.project.domain.entity.Comment;
-import term.project.domain.entity.User;
+import term.project.domain.Comment;
+import term.project.domain.User;
 import term.project.repository.CommentRepository;
 
 import javax.servlet.ServletException;

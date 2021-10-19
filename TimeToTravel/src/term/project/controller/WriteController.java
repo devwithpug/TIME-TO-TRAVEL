@@ -1,10 +1,9 @@
 package term.project.controller;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import term.project.domain.entity.Review;
-import term.project.domain.entity.TravelRoot;
-import term.project.domain.entity.User;
+import term.project.domain.Review;
+import term.project.domain.TravelRoot;
+import term.project.domain.User;
 import term.project.repository.ReviewRepository;
 import term.project.repository.TravelRootRepository;
 import term.project.util.FileUtil;

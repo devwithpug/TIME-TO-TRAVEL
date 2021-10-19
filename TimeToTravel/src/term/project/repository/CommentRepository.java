@@ -1,6 +1,6 @@
 package term.project.repository;
 
-import term.project.domain.entity.Comment;
+import term.project.domain.Comment;
 import term.project.util.DBUtil;
 
 import java.sql.*;
