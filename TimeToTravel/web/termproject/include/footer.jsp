@@ -12,5 +12,8 @@
              </div>
          </div>
      </div>
-     <div class="footer_info"><a href="#">경기대학교 2021-2 지능웹설계 텀프로젝트 201714042 최준규</a></div>
+     <div class="footer_info">
+         <a href="#">경기대학교 2021-2 지능웹설계 텀프로젝트 </a>/
+         <a href="https://www.github.com/devwithpug" target="_blank">201714042 최준규</a>
+     </div>
  </footer>
