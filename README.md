@@ -46,5 +46,6 @@
         ├── review_detail.jsp
         ├── signup.jsp
         ├── travelroot.jsp
+        ├── travelroot_detail.jsp
         └── write.jsp
 ```
