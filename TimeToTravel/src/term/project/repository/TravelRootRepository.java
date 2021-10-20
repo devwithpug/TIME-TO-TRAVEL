@@ -4,6 +4,7 @@ import term.project.domain.TravelRoot;
 import term.project.util.DBUtil;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
     @Override
     public TravelRoot create(TravelRoot entity) throws SQLException {
 
-        String sql = "insert into travel_root values(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into travel_root values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = DBUtil.createPostStatement(
                 sql,
@@ -28,6 +29,13 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                 entity.getPostNum(),
                 entity.getFileName()
         );
+        stmt.setString(9, entity.getDestination());
+        stmt.setInt(10, entity.getDay());
+        stmt.setObject(11, entity.getDepartureDate());
+        stmt.setObject(12, entity.getArrivalDate());
+        stmt.setInt(13, entity.getExpense());
+        stmt.setInt(14, entity.getPerson());
+        stmt.setString(15, entity.getType());
 
         stmt.execute();
         return entity;
@@ -52,7 +60,14 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                     rs.getObject(5, LocalDateTime.class),
                     rs.getInt(6),
                     rs.getInt(7),
-                    rs.getString(8)
+                    rs.getString(8),
+                    rs.getString(9),
+                    rs.getInt(10),
+                    rs.getObject(11, LocalDate.class),
+                    rs.getObject(12, LocalDate.class),
+                    rs.getInt(13),
+                    rs.getInt(14),
+                    rs.getString(15)
             );
         }
         return null;
@@ -107,7 +122,14 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                     rs.getObject(5, LocalDateTime.class),
                     rs.getInt(6),
                     rs.getInt(7),
-                    rs.getString(8)
+                    rs.getString(8),
+                    rs.getString(9),
+                    rs.getInt(10),
+                    rs.getObject(11, LocalDate.class),
+                    rs.getObject(12, LocalDate.class),
+                    rs.getInt(13),
+                    rs.getInt(14),
+                    rs.getString(15)
             );
             result.add(travelRoot);
         }
@@ -116,7 +138,9 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
 
     public void update(String postId, String title, String description) throws SQLException {
 
-        String sql = "update travel_root set title = ?, description = ? where post_id = ?";
+        String sql = "update travel_root set " +
+                "title = ?, description = ?, destination = ?, day = ?, departure_date = ?, arrival_date = ?, expense = ?, person = ?, type = ? " +
+                "where post_id = ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);

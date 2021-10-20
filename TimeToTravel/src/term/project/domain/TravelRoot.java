@@ -1,5 +1,6 @@
 package term.project.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,6 +14,14 @@ public class TravelRoot {
     private Integer viewCount = 0;
     private Integer postNum;
     private String fileName;
+
+    private String destination;
+    private Integer day;
+    private LocalDate departureDate;
+    private LocalDate arrivalDate;
+    private Integer expense;
+    private Integer person;
+    private String type;
 
     @Override
     public String toString() {
@@ -31,7 +40,7 @@ public class TravelRoot {
         this.viewCount++;
     }
 
-    public TravelRoot(String authorId, String title, String description, Integer postNum, String fileName) {
+    public TravelRoot(String authorId, String title, String description, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String type) {
         this.postId = UUID.randomUUID().toString();
         this.authorId = authorId;
         this.title = title;
@@ -40,17 +49,31 @@ public class TravelRoot {
         this.viewCount = 0;
         this.postNum = postNum;
         this.fileName = fileName;
+        this.destination = destination;
+        this.day = day;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.expense = expense;
+        this.person = person;
+        this.type = type;
     }
 
-    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum, String fileName) {
+    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String type) {
         this.postId = postId;
-        this.title = title;
         this.authorId = authorId;
+        this.title = title;
         this.description = description;
         this.createdAt = createdAt;
         this.viewCount = viewCount;
         this.postNum = postNum;
         this.fileName = fileName;
+        this.destination = destination;
+        this.day = day;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.expense = expense;
+        this.person = person;
+        this.type = type;
     }
 
     public String getPostId() {
@@ -115,5 +138,61 @@ public class TravelRoot {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(LocalDate arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public Integer getExpense() {
+        return expense;
+    }
+
+    public void setExpense(Integer expense) {
+        this.expense = expense;
+    }
+
+    public Integer getPerson() {
+        return person;
+    }
+
+    public void setPerson(Integer person) {
+        this.person = person;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

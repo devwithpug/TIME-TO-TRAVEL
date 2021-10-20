@@ -25,7 +25,14 @@ create table travel_root(
                             created_at datetime,
                             view_count int,
                             post_num int,
-                            file_name char(64)
+                            file_name char(64),
+                            destination char(64),
+                            day int,
+                            departure_date date,
+                            arrival_date date,
+                            expense int,
+                            person int,
+                            type char(64)
 );
 
 create table user(
