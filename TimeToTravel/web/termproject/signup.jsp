@@ -50,7 +50,7 @@
 						<h4>2. 회원님의 여행 성향을 알려주세요</h4>
 						<p class="form-label">내가 생각하는 나의 여행 성향은?</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf1" id="prf1_1" value="romantic" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf1" id="prf1_1" value="romantic" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf1_1">로맨틱 여행자 형</label>
 							<input type="radio" class="btn-check" name="prf1" id="prf1_2" value="relaxed" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf1_2">느긋한 휴양자 형</label>
@@ -60,7 +60,7 @@
 						<br>
 						<p class="form-label">다음 중 내가 선호하는 여행은?</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf2" id="prf2_1" value="activity" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf2" id="prf2_1" value="activity" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf2_1">액티비티</label>
 							<input type="radio" class="btn-check" name="prf2" id="prf2_2" value="backpacking" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf2_2">배낭 여행</label>
@@ -70,7 +70,7 @@
 						<br>
 						<p class="form-label">항공 : 직항 vs 경유</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf3" id="prf3_1" value="direct" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf3" id="prf3_1" value="direct" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf3_1">직항</label>
 							<input type="radio" class="btn-check" name="prf3" id="prf3_2" value="transit" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf3_2">경유</label>
@@ -78,7 +78,7 @@
 						<br>
 						<p class="form-label">숙박 : 호텔 vs 그 외</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf4" id="prf4_1" value="hotel" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf4" id="prf4_1" value="hotel" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf4_1">호텔</label>
 							<input type="radio" class="btn-check" name="prf4" id="prf4_2" value="others" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf4_2">그 외</label>
@@ -86,7 +86,7 @@
 						<br>
 						<p class="form-label">계획 : 계획적 vs 무계획</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf5" id="prf5_1" value="plan" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf5" id="prf5_1" value="plan" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf5_1">계획적</label>
 							<input type="radio" class="btn-check" name="prf5" id="prf5_2" value="unplan" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf5_2">무계획</label>
@@ -94,7 +94,7 @@
 						<br>
 						<p class="form-label">교통 : 택시 vs 대중교통</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf6" id="prf6_1" value="taxi" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf6" id="prf6_1" value="taxi" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf6_1">택시</label>
 							<input type="radio" class="btn-check" name="prf6" id="prf6_2" value="transport" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf6_2">대중교통</label>
@@ -102,7 +102,7 @@
 						<br>
 						<p class="form-label">식사 : 맛집 vs 상관없음</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf7" id="prf7_1" value="restaurant" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf7" id="prf7_1" value="restaurant" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf7_1">맛집</label>
 							<input type="radio" class="btn-check" name="prf7" id="prf7_2" value="every" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf7_2">상관없음</label>
@@ -110,7 +110,7 @@
 						<br>
 						<p class="form-label">성향 : 관광 vs 휴양</p>
 						<div class="btn-group mx-auto d-table" role="group">
-							<input type="radio" class="btn-check" name="prf8" id="prf8_1" value="tour" autocomplete="off">
+							<input type="radio" class="btn-check" name="prf8" id="prf8_1" value="tour" autocomplete="off" required>
 							<label class="btn btn-outline-primary" for="prf8_1">관광</label>
 							<input type="radio" class="btn-check" name="prf8" id="prf8_2" value="relax" autocomplete="off">
 							<label class="btn btn-outline-primary" for="prf8_2">휴양</label>
