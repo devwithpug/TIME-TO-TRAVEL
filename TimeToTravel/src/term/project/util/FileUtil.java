@@ -10,10 +10,10 @@ import java.io.IOException;
 
 public class FileUtil {
 
-    private final static String IMAGE_DIR = "termproject/resources/img/post";
-    private final static int maxPostSize = 5000 * 1024;
-    private final static String encoding = "UTF-8";
-    private final static FileRenamePolicy policy = new DefaultFileRenamePolicy();
+    private static final String IMAGE_DIR = "termproject/resources/img/post";
+    private static final int maxPostSize = 5000 * 1024;
+    private static final String encoding = "UTF-8";
+    private static final FileRenamePolicy policy = new DefaultFileRenamePolicy();
 
 
     public static String getImageDir() {
