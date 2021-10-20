@@ -76,7 +76,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
     @Override
     public List<TravelRoot> getAll() throws SQLException {
 
-        String sql = "select * from review";
+        String sql = "select * from travel_root";
 
         Connection conn = DBUtil.getConn();
         Statement stmt = conn.createStatement();
@@ -87,7 +87,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
 
     public Integer getAllCount() throws SQLException {
 
-        String sql = "select count(*) from review";
+        String sql = "select count(*) from travel_root";
 
         Connection conn = DBUtil.getConn();
         Statement stmt = conn.createStatement();
@@ -99,7 +99,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
 
     public List<TravelRoot> getAllByPaging(int limit, int offset) throws SQLException {
 
-        String sql = "select * from travel_root limit ? offset ?";
+        String sql = "select * from travel_root t order by t.created_at desc limit ? offset ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);

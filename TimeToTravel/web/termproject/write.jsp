@@ -66,7 +66,7 @@
                             </form>
                         </div>
                     </c:when>
-                    <c:when test="<%=type.equals("review")%>">
+                    <c:when test='<%=type.equals("review")%>'>
                         <br><br><br><br>
                         <div class="container">
                             <h1>글쓰기 - 여행 후기</h1>
@@ -103,6 +103,49 @@
                                     <input type="text" class="form-control" placeholder="제목" name="title" minlength="5" maxlength="100" required="required">
                                 </div>
                                 <div class="form-group">
+                                    <label>여행지</label>
+                                    <input type="text" class="form-control" placeholder="ex) 국내여행, 뉴욕, 동유럽" name="destination" minlength="1" maxlength="50" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>총 여행일</label>
+                                    <input type="number" class="form-control" name="day" min="1" max="365" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>출발일자</label>
+                                    <input type="date" class="form-control" placeholder="제목" name="departureDate" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>도착일자</label>
+                                    <input type="date" class="form-control" placeholder="제목" name="arrivalDate" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>여행 경비 (₩)</label>
+                                    <input type="number" class="form-control" placeholder="ex) 1000000 (₩)" name="expense" min="1000" max="1000000000" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>총 인원 (명)</label>
+                                    <input type="number" class="form-control" placeholder="ex) 4 (명)" name="person" min="1" max="100" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>여행 주제</label>
+                                    <div class="btn-group mx-auto d-table" role="group">
+                                        <input type="radio" class="btn-check" name="travelType" id="travel_type_0" value="normal" autocomplete="off" required>
+                                        <label class="btn btn-outline-primary" for="travel_type_0">일반 여행</label>
+                                        <input type="radio" class="btn-check" name="travelType" id="travel_type_1" value="activity" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="travel_type_1">액티비티</label>
+                                        <input type="radio" class="btn-check" name="travelType" id="travel_type_2" value="backpacking" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="travel_type_2">배낭 여행</label>
+                                        <input type="radio" class="btn-check" name="travelType" id="travel_type_3" value="vacation" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="travel_type_3">호캉스</label>
+                                        <input type="radio" class="btn-check" name="travelType" id="travel_type_4" value="package" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="travel_type_4">패키지 여행</label>
+                                        <input type="radio" class="btn-check" name="travelType" id="travel_type_5" value="month" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="travel_type_5">한달 살기</label>
+                                        <input type="radio" class="btn-check" name="travelType" id="travel_type_6" value="cruise" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="travel_type_6">선박 여행</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label>내용</label>
                                     <textarea type="text" class="form-control" rows="5" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"></textarea>
                                 </div>
@@ -127,5 +170,9 @@
                 location.href="<%=type%>";
             }
         }
+
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
     </script>
 </html>

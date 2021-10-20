@@ -29,7 +29,7 @@ public class WriteController extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("/termproject/write.jsp");
 
         String type = req.getParameter("type");
-        if (type == null || (!type.equals("review") && !type.equals("travelroot"))) {
+        if (type == null || (!type.equals("review") && !type.equals("travel"))) {
             resp.sendRedirect("/home");
         } else {
             rd.forward(req, resp);
@@ -68,7 +68,7 @@ public class WriteController extends HttpServlet {
                     resp.sendRedirect("/review?page=" + currentPage + "&id=" + postId);
                 } catch (SQLException e) {
                 }
-            } else if (type.equals("travelroot")) {
+            } else if (type.equals("travel")) {
                 TravelRootRepository travelRootRepository = new TravelRootRepository();
                 String destination = request.getParameter("destination");
                 int day = Integer.parseInt(request.getParameter("day"));
@@ -89,7 +89,7 @@ public class WriteController extends HttpServlet {
                         travelRootRepository.create(travelRoot);
                         System.out.println("새로운 여행 계획 공유 : " + travelRoot);
                     }
-                    resp.sendRedirect("/travelroot?page=" + currentPage + "&id=" + postId);
+                    resp.sendRedirect("/travel?page=" + currentPage + "&id=" + postId);
                 } catch (SQLException e) {
                 }
             }
