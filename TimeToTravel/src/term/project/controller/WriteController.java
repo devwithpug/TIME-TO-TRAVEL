@@ -80,7 +80,7 @@ public class WriteController extends HttpServlet {
 
                 try {
                     if (postId != null) {
-                        travelRootRepository.update(postId, title, description);
+                        travelRootRepository.update(postId, title, description, destination, day, departureDate, arrivalDate, expense, person, travelType);
                     } else {
                         currentPage = "0";
                         Integer postNum = travelRootRepository.getAllCount() + 1;

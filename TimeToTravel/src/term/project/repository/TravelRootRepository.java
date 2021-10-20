@@ -136,7 +136,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         return result;
     }
 
-    public void update(String postId, String title, String description) throws SQLException {
+    public void update(String postId, String title, String description, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) throws SQLException {
 
         String sql = "update travel_root set " +
                 "title = ?, description = ?, destination = ?, day = ?, departure_date = ?, arrival_date = ?, expense = ?, person = ?, type = ? " +
@@ -146,7 +146,25 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, title);
         stmt.setString(2, description);
-        stmt.setString(3, postId);
+        stmt.setString(3, destination);
+        stmt.setInt(4, day);
+        stmt.setObject(5, departureDate);
+        stmt.setObject(6, arrivalDate);
+        stmt.setInt(7, expense);
+        stmt.setInt(8, person);
+        stmt.setString(9, travelType);
+        stmt.setString(10, postId);
+        stmt.execute();
+    }
+
+    public void updateViewCount(String postId, Integer count) throws SQLException {
+
+        String sql = "update travel_root set view_count = ? where post_id = ?";
+
+        Connection conn = DBUtil.getConn();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, count);
+        stmt.setString(2, postId);
         stmt.execute();
     }
 
