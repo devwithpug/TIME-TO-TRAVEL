@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(value = "/write")
 public class WriteController extends HttpServlet {
@@ -68,13 +70,21 @@ public class WriteController extends HttpServlet {
                 }
             } else if (type.equals("travelroot")) {
                 TravelRootRepository travelRootRepository = new TravelRootRepository();
+                String destination = request.getParameter("destination");
+                int day = Integer.parseInt(request.getParameter("day"));
+                LocalDate departureDate = LocalDate.parse(request.getParameter("departureDate"), DateTimeFormatter.ISO_LOCAL_DATE);
+                LocalDate arrivalDate = LocalDate.parse(request.getParameter("arrivalDate"), DateTimeFormatter.ISO_LOCAL_DATE);
+                int expense = Integer.parseInt(request.getParameter("expense"));
+                int person = Integer.parseInt(request.getParameter("person"));
+                String travelType = request.getParameter("travelType");
+
                 try {
                     if (postId != null) {
                         travelRootRepository.update(postId, title, description);
                     } else {
                         currentPage = "0";
                         Integer postNum = travelRootRepository.getAllCount() + 1;
-                        TravelRoot travelRoot = new TravelRoot(user.getUserId(), title, description, postNum, fileName);
+                        TravelRoot travelRoot = new TravelRoot(user.getUserId(), title, description, postNum, fileName, destination, day, departureDate, arrivalDate, expense, person, travelType);
                         postId = travelRoot.getPostId();
                         travelRootRepository.create(travelRoot);
                         System.out.println("새로운 여행 계획 공유 : " + travelRoot);

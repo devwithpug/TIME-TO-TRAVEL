@@ -35,7 +35,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         stmt.setObject(12, entity.getArrivalDate());
         stmt.setInt(13, entity.getExpense());
         stmt.setInt(14, entity.getPerson());
-        stmt.setString(15, entity.getType());
+        stmt.setString(15, entity.getTravelType());
 
         stmt.execute();
         return entity;

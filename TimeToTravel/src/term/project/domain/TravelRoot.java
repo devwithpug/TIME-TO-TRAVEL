@@ -21,7 +21,7 @@ public class TravelRoot {
     private LocalDate arrivalDate;
     private Integer expense;
     private Integer person;
-    private String type;
+    private String travelType;
 
     @Override
     public String toString() {
@@ -40,7 +40,7 @@ public class TravelRoot {
         this.viewCount++;
     }
 
-    public TravelRoot(String authorId, String title, String description, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String type) {
+    public TravelRoot(String authorId, String title, String description, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) {
         this.postId = UUID.randomUUID().toString();
         this.authorId = authorId;
         this.title = title;
@@ -55,10 +55,10 @@ public class TravelRoot {
         this.arrivalDate = arrivalDate;
         this.expense = expense;
         this.person = person;
-        this.type = type;
+        this.travelType = travelType;
     }
 
-    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String type) {
+    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) {
         this.postId = postId;
         this.authorId = authorId;
         this.title = title;
@@ -73,7 +73,7 @@ public class TravelRoot {
         this.arrivalDate = arrivalDate;
         this.expense = expense;
         this.person = person;
-        this.type = type;
+        this.travelType = travelType;
     }
 
     public String getPostId() {
@@ -188,11 +188,11 @@ public class TravelRoot {
         this.person = person;
     }
 
-    public String getType() {
-        return type;
+    public String getTravelType() {
+        return travelType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTravelType(String travelType) {
+        this.travelType = travelType;
     }
 }
