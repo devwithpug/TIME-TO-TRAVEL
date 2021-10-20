@@ -1,9 +1,15 @@
+<%@ page import="term.project.repository.TravelRootRepository" %>
+<%@ page import="term.project.repository.UserRepository" %>
+<%@ page import="term.project.domain.TravelRoot" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="term.project.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TIME TO TRAVEL - 여행 루트 공유</title>
+		<title>TIME TO TRAVEL - 여행 계획</title>
     </head>
 	<body>
 		<div class="wrapper">
@@ -24,8 +30,88 @@
 						</div>
 					</c:when>
 					<c:otherwise>
+						<%
+							TravelRootRepository travelRootRepository = new TravelRootRepository();
+							UserRepository userRepository = new UserRepository();
+							Integer currentPage = Integer.parseInt(request.getParameter("page"));
+							Integer count = travelRootRepository.getAllCount();
+						%>
 						<div class="container">
-							<h1> THIS IS TRAVEL ROOT PAGE</h1>
+							<br><br><br><br>
+							<h1>여행 계획</h1>
+							<table class="table table-striped table-hover">
+								<thead>
+								<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th></tr>
+								</thead>
+								<tbody>
+								<%
+									List<TravelRoot> roots = null;
+									try {
+										roots = travelRootRepository.getAllByPaging(10, currentPage * 10);
+									} catch (SQLException e) {
+									}
+									for (TravelRoot root : roots) {
+										out.println("<tr>");
+										out.println("<td width=5% style='word-break:break-all'>"+root.getPostNum()+"</td>");
+										out.println("<td width=58% style='word-break:break-all'><a href='/travel?page=" + currentPage + "&id="+ root.getPostId() + "'>" + root.getTitle()+"</a></td>");
+										User user = null;
+										try {
+											user = userRepository.getOneById(root.getAuthorId());
+										} catch (SQLException e) {
+										}
+										out.println("<td width=10% style='word-break:break-all'>"+user.getNickname()+"</td>");
+										out.println("<td width=20% style='word-break:break-all'>"+root.getCreatedAt().toString()+"</td>");
+										out.println("<td width=7% style='word-break:break-all'>"+root.getViewCount()+"</td>");
+										out.println("</tr>");
+									}
+
+								%>
+								</tbody>
+							</table>
+							<hr>
+							<a href="/travel?id="></a>
+							<c:choose>
+								<c:when test="${sessionScope.user != null}">
+									<a class="btn btn-secondary pull-right" href="/write?type=travel">글쓰기</a>
+								</c:when>
+							</c:choose>
+							<nav>
+								<ul class="pagination justify-content-center">
+									<%
+										if (count > 0) {
+											Integer pageBlock = 5;
+											Integer pageCount = count / 10 + (count % 10 == 0 ? 0 : 1);
+											Integer startPage = (currentPage / pageBlock) * pageBlock;
+											Integer endPage = startPage + pageBlock;
+
+											if (endPage > pageCount) {
+												endPage = pageCount;
+											}
+
+											if (startPage >= pageBlock) {
+												out.println("<li class='page-item'><a class='page-link' href='/travel?page=" + (startPage - pageBlock) + "'>Previous</a></li>");
+											} else {
+												out.println("<li class='page-item disabled'><a class='page-link'>Previous</a></li>");
+											}
+
+											for (int i = startPage; i < endPage; i++) {
+												if (i == currentPage) {
+													out.println("<li class='page-item disabled'><a class='page-link'>" + i + "</a></li>");
+												} else {
+													out.println("<li class='page-item'><a class='page-link' href='/travel?page=" + i + "'>" + i + "</a></li>");
+												}
+											}
+
+											if (endPage < pageCount) {
+												out.println("<li class='page-item'><a class='page-link' href='/travel?page=" + (startPage + pageBlock) + "'>Next</a></li>");
+											} else {
+												out.println("<li class='page-item disabled'><a class='page-link'>Next</a></li>");
+											}
+
+										}
+									%>
+								</ul>
+							</nav>
 						</div>
 					</c:otherwise>
 				</c:choose>

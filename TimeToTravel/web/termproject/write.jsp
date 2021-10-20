@@ -13,8 +13,6 @@
             String type = request.getParameter("type");
             String currentPage = request.getParameter("page");
             String id = request.getParameter("id");
-            String path = application.getRealPath("tmp");
-
         %>
         <div class="wrapper">
             <jsp:include page="/termproject/include/header.jsp"></jsp:include>
@@ -68,24 +66,49 @@
                             </form>
                         </div>
                     </c:when>
+                    <c:when test="<%=type.equals("review")%>">
+                        <br><br><br><br>
+                        <div class="container">
+                            <h1>글쓰기 - 여행 후기</h1>
+                            <form method="post" action="/write" enctype="multipart/form-data" data="multipart">
+                                <input type="text" class="form-control" name="type" hidden="hidden" value="<%=type%>">
+                                <input type="text" class="form-control" name="path" hidden="hidden" value="<%=application.getRealPath("images")%>">
+                                <div class="form-group">
+                                    <label>제목</label>
+                                    <input type="text" class="form-control" placeholder="제목" name="title" minlength="5" maxlength="100" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>내용</label>
+                                    <textarea type="text" class="form-control" rows="5" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>사진 첨부</label>
+                                    <input type="file" class="form-control" name="input">
+                                </div>
+                                <br><br>
+                                <button type="submit" class="btn btn-primary">등록</button>
+                                <a class="btn btn-secondary" onclick="cancel()">취소</a>
+                            </form>
+                        </div>
+                    </c:when>
                     <c:otherwise>
                         <br><br><br><br>
                         <div class="container">
-                            <h1>글쓰기 - <%=(type.equals("review")? "여행 후기" : "여행 계획 공유")%></h1>
+                            <h1>글쓰기 - 여행 계획</h1>
                             <form method="post" action="/write" enctype="multipart/form-data" data="multipart">
-                                <input type="text" class="form-control" id="type" name="type" hidden="hidden" value="<%=type%>">
-                                <input type="text" class="form-control" id="path" name="path" hidden="hidden" value="<%=application.getRealPath("images")%>">
+                                <input type="text" class="form-control" name="type" hidden="hidden" value="<%=type%>">
+                                <input type="text" class="form-control" name="path" hidden="hidden" value="<%=application.getRealPath("images")%>">
                                 <div class="form-group">
-                                    <label for="title">제목</label>
-                                    <input type="text" class="form-control" id="title" placeholder="제목" name="title" minlength="5" maxlength="100" required="required">
+                                    <label>제목</label>
+                                    <input type="text" class="form-control" placeholder="제목" name="title" minlength="5" maxlength="100" required="required">
                                 </div>
                                 <div class="form-group">
-                                    <label for="content">내용</label>
-                                    <textarea type="text" class="form-control" rows="5" id="content" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"></textarea>
+                                    <label>내용</label>
+                                    <textarea type="text" class="form-control" rows="5" name="description" placeholder="내용" minlength="5" maxlength="2048" required="required"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image">사진 첨부</label>
-                                    <input type="file" class="form-control" id="image" name="input">
+                                    <label>사진 첨부</label>
+                                    <input type="file" class="form-control" name="input">
                                 </div>
                                 <br><br>
                                 <button type="submit" class="btn btn-primary">등록</button>

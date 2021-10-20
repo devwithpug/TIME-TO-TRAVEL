@@ -39,7 +39,7 @@
            <ul class="navi">
                <li><a href="home">Home</a></li>
                <li><a href="review?page=0">여행 후기</a></li>
-               <li><a href="travelroot?page=0">여행 계획 공유</a></li>
+               <li><a href="travel?page=0">여행 계획</a></li>
                <li><a href="mypage">마이페이지</a></li>
                <li><a href="http://ncov.mohw.go.kr/" target="_blank">코로나 현황</a></li>
            </ul>
