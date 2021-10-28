@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="${sessionScope.lang}">
 	<head>
 		<meta charset="UTF-8">
 		<title>header</title>
@@ -19,6 +20,8 @@
         <script src="/termproject/resources/js/index.js" rel="script" type="text/javascript"></script>
 	</head>
 	<body>
+    <fmt:setLocale value='${sessionScope.lang}' />
+    <fmt:setBundle basename="term.project.bundle.home" var="home" />
        <div class="logo item">
            <a href="home"><img class="logo" src="/termproject/resources/img/logo.png"></a>
        </div>
@@ -26,22 +29,22 @@
            <div class="headerbtn">
            <c:choose>
 	           	<c:when test="${sessionScope.user != null}">
-                    <button type="button"class="btn btn-info">${sessionScope.user.nickname}(${sessionScope.user.name})님, 환영합니다!</button>
-                    <button type="button"class="btn btn-info" onclick="logout();">로그아웃</button>
+                    <button type="button"class="btn btn-info">${sessionScope.user.nickname}(${sessionScope.user.name})<fmt:message bundle="${home}" key="welcome"/> </button>
+                    <button type="button"class="btn btn-info" onclick="logout();"><fmt:message bundle="${home}" key="logout"/></button>
 	           	</c:when>
                <c:otherwise>
-                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin">로그인</button>
+                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin"><fmt:message bundle="${home}" key="login"/></button>
                </c:otherwise>
            </c:choose>
            </div>
        </div>
        <div class="nav item">
            <ul class="navi">
-               <li><a href="home">Home</a></li>
-               <li><a href="review?page=0">여행 후기</a></li>
-               <li><a href="travel?page=0">여행 계획</a></li>
-               <li><a href="mypage">마이페이지</a></li>
-               <li><a href="http://ncov.mohw.go.kr/" target="_blank">코로나 현황</a></li>
+               <li><a href="home"><fmt:message bundle="${home}" key="home"/></a></li>
+               <li><a href="review?page=0"><fmt:message bundle="${home}" key="review"/></a></li>
+               <li><a href="travel?page=0"><fmt:message bundle="${home}" key="travelRoute"/></a></li>
+               <li><a href="mypage"><fmt:message bundle="${home}" key="mypage"/></a></li>
+               <li><a href="http://ncov.mohw.go.kr/" target="_blank"><fmt:message bundle="${home}" key="covid"/></a></li>
            </ul>
        </div>
 	</body>
@@ -58,16 +61,16 @@
                     <form method="post" action="/login">
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control rounded-4" id="floatingInput" name="id">
-                            <label for="floatingInput">아이디</label>
+                            <label for="floatingInput"><fmt:message bundle="${home}" key="loginId"/></label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control rounded-4" id="pwd" name="pwd">
-                            <label for="pwd">비밀번호</label>
+                            <label for="pwd"><fmt:message bundle="${home}" key="loginPwd"/></label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">로그인</button>
+                        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit"><fmt:message bundle="${home}" key="login"/></button>
                         <hr class="my-4">
                         <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="button" onclick="location.href = 'signup'">
-                            회원 가입
+                            <fmt:message bundle="${home}" key="signUp"/>
                         </button>
                     </form>
                 </div>
@@ -76,8 +79,8 @@
     </div>
 	<script type="text/javascript">
 		function logout() {
-			if(confirm("정말 로그아웃 하시겠습니까?")) {
-				alert("정상적으로 로그아웃 되었습니다.");
+			if(confirm('<fmt:message bundle="${home}" key="logoutConfirm"/>')) {
+				alert('<fmt:message bundle="${home}" key="logoutConfirm2"/>');
 				location.href="login";
 			}
 		}

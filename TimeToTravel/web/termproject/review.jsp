@@ -6,12 +6,15 @@
 <%@ page import="term.project.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TIME TO TRAVEL - 여행 후기</title>
+		<title>TIME TO TRAVEL</title>
     </head>
 	<body>
+	<fmt:setLocale value='${sessionScope.lang}' />
+	<fmt:setBundle basename="term.project.bundle.post" var="post" />
 	<%
 		ReviewRepository reviewRepository = new ReviewRepository();
 		UserRepository userRepository = new UserRepository();
@@ -23,10 +26,16 @@
 			<div class="main">
 				<div class="container">
 					<br><br><br><br>
-					<h1>여행 후기</h1>
+					<h1><fmt:message bundle="${post}" key="review"/></h1>
 					<table class="table table-striped table-hover">
 						<thead>
-						<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th></tr>
+						<tr>
+							<th><fmt:message bundle="${post}" key="no"/></th>
+							<th><fmt:message bundle="${post}" key="postTitle"/></th>
+							<th><fmt:message bundle="${post}" key="author"/></th>
+							<th><fmt:message bundle="${post}" key="date"/></th>
+							<th><fmt:message bundle="${post}" key="views"/></th>
+						</tr>
 						</thead>
 						<tbody>
 						<%
@@ -57,7 +66,7 @@
 					<a href="/review?id="></a>
 					<c:choose>
 						<c:when test="${sessionScope.user != null}">
-						<a class="btn btn-secondary pull-right" href="/write?type=review">글쓰기</a>
+						<a class="btn btn-secondary pull-right" href="/write?type=review"><fmt:message bundle="${post}" key="write"/></a>
 						</c:when>
 					</c:choose>
 					<nav>

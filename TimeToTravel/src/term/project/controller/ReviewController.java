@@ -27,7 +27,7 @@ public class ReviewController extends HttpServlet {
 
         if (delete == null) {
             if (postId == null && page == null) {
-                resp.sendRedirect("/home");
+                resp.sendRedirect("/review?page=0");
             } else {
                 if (postId == null) {
                     rd = req.getRequestDispatcher("/termproject/review.jsp");

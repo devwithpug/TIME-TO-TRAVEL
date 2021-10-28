@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>TIME TO TRAVEL</title>
     </head>
 	<body>
+    <fmt:setLocale value='${sessionScope.lang}' />
+    <fmt:setBundle basename="term.project.bundle.home" var="home" />
 		<div class="wrapper">
 			<jsp:include page="/termproject/include/header.jsp"></jsp:include>
 			<div class="main">
@@ -15,15 +18,15 @@
 
                 <br><br><br><br><br><br>
                 <div class="main-text">
-                    <h3>TIME TO TRAVEL은 여행을 꿈꾸는 사람들이</h3>
-                    <h3>자신만의 특별한 여행 루트들을 공유 할수 있는 웹 서비스 입니다</h3>
+                    <h3><fmt:message bundle="${home}" key="mainText1"/></h3>
+                    <h3><fmt:message bundle="${home}" key="mainText2"/></h3>
                     <br>
-                    <p>여행 후기, 맛집, 일정 공유, 나만의 여행 계획을 회원들과 함께 공유해 보세요</p>
+                    <p><fmt:message bundle="${home}" key="mainText3"/></p>
                 </div>
                 <br><br><br><br><br><br>
                 <div class="main-text">
                     <h3>HOT PLACE</h3>
-                    <p>추천이 가장 많은 인기 장소 10곳을 소개합니다.</p>
+                    <p><fmt:message bundle="${home}" key="hotPlace"/></p>
                 </div>
                 <br>
                 

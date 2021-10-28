@@ -27,7 +27,7 @@ public class TravelRouteController extends HttpServlet {
 
         if (delete == null) {
             if (postId == null && page == null) {
-                resp.sendRedirect("/home");
+                resp.sendRedirect("/travel?page=0");
             } else {
                 if (postId == null) {
                     rd = req.getRequestDispatcher("/termproject/travelroute.jsp");

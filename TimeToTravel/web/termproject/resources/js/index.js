@@ -9,7 +9,12 @@ $(document).ready(function() {
 
     // 텍스트 타이핑
     var $typing = $(".main-img-text");
-    var text = "TIME TO TRAVEL,\n여행 갈 시간!";
+    var lang = document.documentElement.lang;
+    if (lang == "en") {
+        var text = "WELCOME TO\nTIME TO TRAVEL!"
+    } else {
+        var text = "TIME TO TRAVEL,\n여행 갈 시간!";
+    }
     $typing.html("");
 
     var chars = text.split("");

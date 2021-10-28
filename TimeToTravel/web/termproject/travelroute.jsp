@@ -6,27 +6,28 @@
 <%@ page import="term.project.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TIME TO TRAVEL - 여행 계획</title>
+		<title>TIME TO TRAVEL</title>
     </head>
 	<body>
+	<fmt:setLocale value='${sessionScope.lang}' />
+	<fmt:setBundle basename="term.project.bundle.post" var="post" />
+	<fmt:setBundle basename="term.project.bundle.home" var="home" />
 		<div class="wrapper">
 			<jsp:include page="/termproject/include/header.jsp"></jsp:include>
 			<div class="main">
 				<c:choose>
 					<c:when test="${sessionScope.user == null}">
-						<br><br><br><br>
+					    <br><br><br><br>
 						<div class="container" style="width: 600px">
-							<h1>이곳은 회원 전용 페이지 입니다!</h1>
-							<marquee scrollamount=10>
-								<h1>
-									TIME TO TRAVEL의 새로운 회원이 되는 것은 어떠신가요?
-									여행을 좋아하는 다른 분들과 함께 귀중한 정보들을 공유해보세요!!!
-								</h1>
-							</marquee>
-							<img src="/termproject/resources/img/pug_move.gif">
+						<h1><fmt:message bundle="${home}" key="memberOnly1"/></h1>
+						<marquee scrollamount=10>
+							<h1><fmt:message bundle="${home}" key="memberOnly2"/></h1>
+						</marquee>
+						<img src="/termproject/resources/img/pug_move.gif">
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -38,10 +39,16 @@
 						%>
 						<div class="container">
 							<br><br><br><br>
-							<h1>여행 계획</h1>
+							<h1><fmt:message bundle="${post}" key="travelRoute"/></h1>
 							<table class="table table-striped table-hover">
 								<thead>
-								<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th></tr>
+								<tr>
+									<th><fmt:message bundle="${post}" key="no"/></th>
+									<th><fmt:message bundle="${post}" key="postTitle"/></th>
+									<th><fmt:message bundle="${post}" key="author"/></th>
+									<th><fmt:message bundle="${post}" key="date"/></th>
+									<th><fmt:message bundle="${post}" key="views"/></th>
+								</tr>
 								</thead>
 								<tbody>
 								<%
@@ -72,7 +79,7 @@
 							<a href="/travel?id="></a>
 							<c:choose>
 								<c:when test="${sessionScope.user != null}">
-									<a class="btn btn-secondary pull-right" href="/write?type=travel">글쓰기</a>
+									<a class="btn btn-secondary pull-right" href="/write?type=travel"><fmt:message bundle="${post}" key="write"/></a>
 								</c:when>
 							</c:choose>
 							<nav>
