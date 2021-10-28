@@ -23,6 +23,7 @@
 ├── src
 │   └── term
 │       └── project
+│           ├── bundle
 │           ├── controller
 │           ├── domain
 │           ├── repository
