@@ -3,7 +3,7 @@ package term.project.controller;
 import term.project.domain.User;
 import term.project.repository.CommentRepository;
 import term.project.repository.ReviewRepository;
-import term.project.repository.TravelRootRepository;
+import term.project.repository.TravelRouteRepository;
 import term.project.repository.UserRepository;
 
 import javax.servlet.RequestDispatcher;
@@ -73,12 +73,12 @@ public class MyPageController extends HttpServlet {
     private void deleteUser(String userId) {
         UserRepository userRepository = new UserRepository();
         ReviewRepository reviewRepository = new ReviewRepository();
-        TravelRootRepository travelRootRepository = new TravelRootRepository();
+        TravelRouteRepository travelRouteRepository = new TravelRouteRepository();
         CommentRepository commentRepository = new CommentRepository();
         try {
             userRepository.delete(userId);
             reviewRepository.deleteByUserId(userId);
-            travelRootRepository.deleteByUserId(userId);
+            travelRouteRepository.deleteByUserId(userId);
             commentRepository.deleteByUserId(userId);
         } catch (SQLException err){
         }

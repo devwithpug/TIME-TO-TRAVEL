@@ -2,10 +2,10 @@ package term.project.controller;
 
 import com.oreilly.servlet.MultipartRequest;
 import term.project.domain.Review;
-import term.project.domain.TravelRoot;
+import term.project.domain.TravelRoute;
 import term.project.domain.User;
 import term.project.repository.ReviewRepository;
-import term.project.repository.TravelRootRepository;
+import term.project.repository.TravelRouteRepository;
 import term.project.util.FileUtil;
 
 import javax.servlet.RequestDispatcher;
@@ -69,7 +69,7 @@ public class WriteController extends HttpServlet {
                 } catch (SQLException e) {
                 }
             } else if (type.equals("travel")) {
-                TravelRootRepository travelRootRepository = new TravelRootRepository();
+                TravelRouteRepository travelRouteRepository = new TravelRouteRepository();
                 String destination = request.getParameter("destination");
                 int day = Integer.parseInt(request.getParameter("day"));
                 LocalDate departureDate = LocalDate.parse(request.getParameter("departureDate"), DateTimeFormatter.ISO_LOCAL_DATE);
@@ -80,14 +80,14 @@ public class WriteController extends HttpServlet {
 
                 try {
                     if (postId != null) {
-                        travelRootRepository.update(postId, title, description, destination, day, departureDate, arrivalDate, expense, person, travelType);
+                        travelRouteRepository.update(postId, title, description, destination, day, departureDate, arrivalDate, expense, person, travelType);
                     } else {
                         currentPage = "0";
-                        Integer postNum = travelRootRepository.getAllCount() + 1;
-                        TravelRoot travelRoot = new TravelRoot(user.getUserId(), title, description, postNum, fileName, destination, day, departureDate, arrivalDate, expense, person, travelType);
-                        postId = travelRoot.getPostId();
-                        travelRootRepository.create(travelRoot);
-                        System.out.println("새로운 여행 계획 공유 : " + travelRoot);
+                        Integer postNum = travelRouteRepository.getAllCount() + 1;
+                        TravelRoute travelRoute = new TravelRoute(user.getUserId(), title, description, postNum, fileName, destination, day, departureDate, arrivalDate, expense, person, travelType);
+                        postId = travelRoute.getPostId();
+                        travelRouteRepository.create(travelRoute);
+                        System.out.println("새로운 여행 계획 공유 : " + travelRoute);
                     }
                     resp.sendRedirect("/travel?page=" + currentPage + "&id=" + postId);
                 } catch (SQLException e) {

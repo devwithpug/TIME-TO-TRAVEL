@@ -1,6 +1,6 @@
-<%@ page import="term.project.repository.TravelRootRepository" %>
+<%@ page import="term.project.repository.TravelRouteRepository" %>
 <%@ page import="term.project.repository.UserRepository" %>
-<%@ page import="term.project.domain.TravelRoot" %>
+<%@ page import="term.project.domain.TravelRoute" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="term.project.domain.User" %>
@@ -31,10 +31,10 @@
 					</c:when>
 					<c:otherwise>
 						<%
-							TravelRootRepository travelRootRepository = new TravelRootRepository();
+							TravelRouteRepository travelRouteRepository = new TravelRouteRepository();
 							UserRepository userRepository = new UserRepository();
 							Integer currentPage = Integer.parseInt(request.getParameter("page"));
-							Integer count = travelRootRepository.getAllCount();
+							Integer count = travelRouteRepository.getAllCount();
 						%>
 						<div class="container">
 							<br><br><br><br>
@@ -45,23 +45,23 @@
 								</thead>
 								<tbody>
 								<%
-									List<TravelRoot> roots = null;
+									List<TravelRoute> routes = null;
 									try {
-										roots = travelRootRepository.getAllByPaging(10, currentPage * 10);
+										routes = travelRouteRepository.getAllByPaging(10, currentPage * 10);
 									} catch (SQLException e) {
 									}
-									for (TravelRoot root : roots) {
+									for (TravelRoute route : routes) {
 										out.println("<tr>");
-										out.println("<td width=5% style='word-break:break-all'>"+root.getPostNum()+"</td>");
-										out.println("<td width=58% style='word-break:break-all'><a href='/travel?page=" + currentPage + "&id="+ root.getPostId() + "'>" + root.getTitle()+"</a></td>");
+										out.println("<td width=5% style='word-break:break-all'>"+route.getPostNum()+"</td>");
+										out.println("<td width=58% style='word-break:break-all'><a href='/travel?page=" + currentPage + "&id="+ route.getPostId() + "'>" + route.getTitle()+"</a></td>");
 										User user = null;
 										try {
-											user = userRepository.getOneById(root.getAuthorId());
+											user = userRepository.getOneById(route.getAuthorId());
 										} catch (SQLException e) {
 										}
 										out.println("<td width=10% style='word-break:break-all'>"+user.getNickname()+"</td>");
-										out.println("<td width=20% style='word-break:break-all'>"+root.getCreatedAt().toString()+"</td>");
-										out.println("<td width=7% style='word-break:break-all'>"+root.getViewCount()+"</td>");
+										out.println("<td width=20% style='word-break:break-all'>"+route.getCreatedAt().toString()+"</td>");
+										out.println("<td width=7% style='word-break:break-all'>"+route.getViewCount()+"</td>");
 										out.println("</tr>");
 									}
 

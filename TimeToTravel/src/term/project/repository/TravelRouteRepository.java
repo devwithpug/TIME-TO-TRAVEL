@@ -1,6 +1,6 @@
 package term.project.repository;
 
-import term.project.domain.TravelRoot;
+import term.project.domain.TravelRoute;
 import term.project.util.DBUtil;
 
 import java.sql.*;
@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TravelRootRepository implements Repository<TravelRoot, String> {
+public class TravelRouteRepository implements Repository<TravelRoute, String> {
 
-    public TravelRootRepository() {
+    public TravelRouteRepository() {
     }
 
     @Override
-    public TravelRoot create(TravelRoot entity) throws SQLException {
+    public TravelRoute create(TravelRoute entity) throws SQLException {
 
-        String sql = "insert into travel_root values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into travel_route values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = DBUtil.createPostStatement(
                 sql,
@@ -42,9 +42,9 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
     }
 
     @Override
-    public TravelRoot getOneById(String id) throws SQLException {
+    public TravelRoute getOneById(String id) throws SQLException {
 
-        String sql = "select * from travel_root t where t.post_id = ?";
+        String sql = "select * from travel_route t where t.post_id = ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -52,7 +52,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         ResultSet rs = stmt.executeQuery();
 
         if (rs.next()) {
-            return new TravelRoot(
+            return new TravelRoute(
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
@@ -74,20 +74,20 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
     }
 
     @Override
-    public List<TravelRoot> getAll() throws SQLException {
+    public List<TravelRoute> getAll() throws SQLException {
 
-        String sql = "select * from travel_root";
+        String sql = "select * from travel_route";
 
         Connection conn = DBUtil.getConn();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
-        return getTravelRoots(rs);
+        return getTravelRoutes(rs);
     }
 
     public Integer getAllCount() throws SQLException {
 
-        String sql = "select count(*) from travel_root";
+        String sql = "select count(*) from travel_route";
 
         Connection conn = DBUtil.getConn();
         Statement stmt = conn.createStatement();
@@ -97,9 +97,9 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         return rs.getInt(1);
     }
 
-    public List<TravelRoot> getAllByPaging(int limit, int offset) throws SQLException {
+    public List<TravelRoute> getAllByPaging(int limit, int offset) throws SQLException {
 
-        String sql = "select * from travel_root t order by t.created_at desc limit ? offset ?";
+        String sql = "select * from travel_route t order by t.created_at desc limit ? offset ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -107,14 +107,14 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
         stmt.setInt(2, offset);
         ResultSet rs = stmt.executeQuery();
 
-        return getTravelRoots(rs);
+        return getTravelRoutes(rs);
     }
 
-    private List<TravelRoot> getTravelRoots(ResultSet rs) throws SQLException {
-        List<TravelRoot> result = new ArrayList<>();
+    private List<TravelRoute> getTravelRoutes(ResultSet rs) throws SQLException {
+        List<TravelRoute> result = new ArrayList<>();
 
         while (rs.next()) {
-            TravelRoot travelRoot = new TravelRoot(
+            TravelRoute travelRoute = new TravelRoute(
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
@@ -131,14 +131,14 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
                     rs.getInt(14),
                     rs.getString(15)
             );
-            result.add(travelRoot);
+            result.add(travelRoute);
         }
         return result;
     }
 
     public void update(String postId, String title, String description, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) throws SQLException {
 
-        String sql = "update travel_root set " +
+        String sql = "update travel_route set " +
                 "title = ?, description = ?, destination = ?, day = ?, departure_date = ?, arrival_date = ?, expense = ?, person = ?, type = ? " +
                 "where post_id = ?";
 
@@ -159,7 +159,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
 
     public void updateViewCount(String postId, Integer count) throws SQLException {
 
-        String sql = "update travel_root set view_count = ? where post_id = ?";
+        String sql = "update travel_route set view_count = ? where post_id = ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -171,7 +171,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
     @Override
     public void delete(String id) throws SQLException {
 
-        String sql = "delete from travel_root where post_id = ?";
+        String sql = "delete from travel_route where post_id = ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -181,7 +181,7 @@ public class TravelRootRepository implements Repository<TravelRoot, String> {
 
     public void deleteByUserId(String id) throws SQLException {
 
-        String sql = "delete from travel_root where author_id = ?";
+        String sql = "delete from travel_route where author_id = ?";
 
         Connection conn = DBUtil.getConn();
         PreparedStatement stmt = conn.prepareStatement(sql);

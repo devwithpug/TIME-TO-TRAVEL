@@ -1,8 +1,8 @@
 package term.project.controller;
 
-import term.project.domain.TravelRoot;
+import term.project.domain.TravelRoute;
 import term.project.repository.CommentRepository;
-import term.project.repository.TravelRootRepository;
+import term.project.repository.TravelRouteRepository;
 import term.project.util.FileUtil;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet(value = "/travel")
-public class TravelRootController extends HttpServlet {
+public class TravelRouteController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,22 +30,22 @@ public class TravelRootController extends HttpServlet {
                 resp.sendRedirect("/home");
             } else {
                 if (postId == null) {
-                    rd = req.getRequestDispatcher("/termproject/travelroot.jsp");
+                    rd = req.getRequestDispatcher("/termproject/travelroute.jsp");
                 } else {
-                    rd = req.getRequestDispatcher("/termproject/travelroot_detail.jsp");
+                    rd = req.getRequestDispatcher("/termproject/travelroute_detail.jsp");
                 }
                 rd.forward(req, resp);
             }
         } else {
-            TravelRootRepository travelRootRepository = new TravelRootRepository();
+            TravelRouteRepository travelRouteRepository = new TravelRouteRepository();
             CommentRepository commentRepository = new CommentRepository();
             try {
                 commentRepository.deleteByPostId(postId);
-                TravelRoot root = travelRootRepository.getOneById(postId);
+                TravelRoute root = travelRouteRepository.getOneById(postId);
                 if (root.getFileName() != null) {
                     FileUtil.deleteFile(req, root.getFileName());
                 }
-                travelRootRepository.delete(postId);
+                travelRouteRepository.delete(postId);
             } catch (SQLException e) {
             }
             resp.sendRedirect("/travel?page=0");

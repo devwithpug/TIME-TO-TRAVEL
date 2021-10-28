@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class TravelRoot {
+public class TravelRoute {
 
     private String postId;
     private String authorId;
@@ -40,7 +40,7 @@ public class TravelRoot {
         this.viewCount++;
     }
 
-    public TravelRoot(String authorId, String title, String description, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) {
+    public TravelRoute(String authorId, String title, String description, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) {
         this.postId = UUID.randomUUID().toString();
         this.authorId = authorId;
         this.title = title;
@@ -58,7 +58,7 @@ public class TravelRoot {
         this.travelType = travelType;
     }
 
-    public TravelRoot(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) {
+    public TravelRoute(String postId, String authorId, String title, String description, LocalDateTime createdAt, Integer viewCount, Integer postNum, String fileName, String destination, Integer day, LocalDate departureDate, LocalDate arrivalDate, Integer expense, Integer person, String travelType) {
         this.postId = postId;
         this.authorId = authorId;
         this.title = title;

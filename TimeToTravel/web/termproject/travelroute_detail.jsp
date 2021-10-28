@@ -5,8 +5,8 @@
 <%@ page import="term.project.repository.CommentRepository" %>
 <%@ page import="term.project.domain.Comment" %>
 <%@ page import="java.util.List" %>
-<%@ page import="term.project.repository.TravelRootRepository" %>
-<%@ page import="term.project.domain.TravelRoot" %>
+<%@ page import="term.project.repository.TravelRouteRepository" %>
+<%@ page import="term.project.domain.TravelRoute" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -17,11 +17,11 @@
 <%
     String postId = request.getParameter("id");
     String currentPage = request.getParameter("page");
-    TravelRootRepository travelRootRepository = new TravelRootRepository();
+    TravelRouteRepository travelRouteRepository = new TravelRouteRepository();
     UserRepository userRepository = new UserRepository();
     CommentRepository commentRepository = new CommentRepository();
 
-    TravelRoot root = null;
+    TravelRoute route = null;
     User author = null;
     User user = null;
     List<Comment> comments = null;
@@ -31,9 +31,9 @@
     }
 
     try {
-        root = travelRootRepository.getOneById(postId);
-        root.plusViewCount();
-        travelRootRepository.updateViewCount(root.getPostId(), root.getViewCount());
+        route = travelRouteRepository.getOneById(postId);
+        route.plusViewCount();
+        travelRouteRepository.updateViewCount(route.getPostId(), route.getViewCount());
         comments = commentRepository.getAllByPostId(postId);
 
         for (Comment comment : comments) {
@@ -41,7 +41,7 @@
             comment.setUserId(u.getNickname());
         }
 
-        author = userRepository.getOneById(root.getAuthorId());
+        author = userRepository.getOneById(route.getAuthorId());
     } catch (SQLException e) {
     }
 %>
@@ -68,7 +68,7 @@
                     <h1>게시글</h1>
                     <div class="form-group">
                         <label for="title">제목</label>
-                        <input type="text" class="form-control" id="title" name="title" value="<%=root.getTitle()%>" readonly="readonly">
+                        <input type="text" class="form-control" id="title" name="title" value="<%=route.getTitle()%>" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="author">작성자</label>
@@ -85,7 +85,7 @@
                             String prefTransport = author.getPrefTransport();
                             String prefMeal = author.getPrefMeal();
                             String prefTendency = author.getPrefTendency();
-                            String travelType = root.getTravelType();
+                            String travelType = route.getTravelType();
                         %>
 
                         <div class="form-control">
@@ -161,32 +161,32 @@
                     </details>
                     <div class="form-group">
                         <label for="title">조회수</label>
-                        <input type="text" class="form-control" id="viewCount" name="viewCount" value="<%=root.getViewCount()%>" readonly="readonly">
+                        <input type="text" class="form-control" id="viewCount" name="viewCount" value="<%=route.getViewCount()%>" readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label>여행지</label>
-                        <input type="text" class="form-control" name="destination" value="<%=root.getDestination()%>" readonly>
+                        <input type="text" class="form-control" name="destination" value="<%=route.getDestination()%>" readonly>
                     </div>
                     <div class="form-group">
                         <label>총 여행일</label>
-                        <input type="number" class="form-control" name="day" value="<%=root.getDay()%>" readonly>
+                        <input type="number" class="form-control" name="day" value="<%=route.getDay()%>" readonly>
                     </div>
                     <div class="form-group">
                         <label>출발일자</label>
-                        <input type="date" class="form-control" name="departureDate" value="<%=root.getDepartureDate()%>" readonly>
+                        <input type="date" class="form-control" name="departureDate" value="<%=route.getDepartureDate()%>" readonly>
                     </div>
                     <div class="form-group">
                         <label>도착일자</label>
-                        <input type="date" class="form-control" name="arrivalDate" value="<%=root.getArrivalDate()%>" readonly>
+                        <input type="date" class="form-control" name="arrivalDate" value="<%=route.getArrivalDate()%>" readonly>
                     </div>
                     <div class="form-group">
                         <label>여행 경비 (₩)</label>
-                        <input type="number" class="form-control" name="expense" value="<%=root.getExpense()%>" readonly>
+                        <input type="number" class="form-control" name="expense" value="<%=route.getExpense()%>" readonly>
                     </div>
                     <div class="form-group">
                         <label>총 인원 (명)</label>
-                        <input type="number" class="form-control" name="person" value="<%=root.getPerson()%>" readonly>
+                        <input type="number" class="form-control" name="person" value="<%=route.getPerson()%>" readonly>
                     </div>
                     <label>여행 주제</label>
                     <div class="form-control">
@@ -209,18 +209,18 @@
                     </div>
 
                     <c:choose>
-                        <c:when test="<%=root.getFileName() != null%>">
+                        <c:when test="<%=route.getFileName() != null%>">
                             <div class="form-group">
                                 <details>
                                     <summary>첨부 사진</summary>
-                                    <img class="form-control" src="<%=FileUtil.getImageDir() + "/" + root.getFileName()%>">
+                                    <img class="form-control" src="<%=FileUtil.getImageDir() + "/" + route.getFileName()%>">
                                 </details>
                             </div>
                         </c:when>
                     </c:choose>
                     <div class="form-group">
                         <label for="content">내용</label>
-                        <pre class="form-control" id="content" style="overflow: auto"><c:out value="<%=root.getDescription()%>"></c:out></pre>
+                        <pre class="form-control" id="content" style="overflow: auto"><c:out value="<%=route.getDescription()%>"></c:out></pre>
                     </div>
                     <div class="form-group">
                         <label for="content">댓글</label>
@@ -245,7 +245,7 @@
                                             </div>
                                             <div class="col-10">
                                                 <input type="hidden" name="type" value="travel">
-                                                <input type="hidden" name="postId" value="<%=root.getPostId()%>">
+                                                <input type="hidden" name="postId" value="<%=route.getPostId()%>">
                                                 <input type="hidden" name="page" value="<%=currentPage%>">
                                                 <input type="text" class="form-control" name="comment" placeholder="댓글은 삭제 및 수정이 불가능하니 신중하게 작성해주세요." required="required" minlength="2" maxlength="256">
                                             </div>
@@ -263,7 +263,7 @@
                         <c:when test="${sessionScope != null}">
                             <%
                                 pageContext.setAttribute("user", user);
-                                pageContext.setAttribute("authorId", root.getAuthorId());
+                                pageContext.setAttribute("authorId", route.getAuthorId());
                             %>
                             <c:choose>
                                 <c:when test="${user.userId == authorId}">
