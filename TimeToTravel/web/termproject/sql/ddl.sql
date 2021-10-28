@@ -17,7 +17,7 @@ create table review(
                        file_name char(64)
 );
 
-create table travel_root(
+create table travel_route(
                             post_id char(36),
                             author_id char(36),
                             title char(64),
