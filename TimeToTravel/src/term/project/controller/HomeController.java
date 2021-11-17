@@ -16,10 +16,6 @@ public class HomeController extends HttpServlet {
 
         RequestDispatcher rd = req.getRequestDispatcher("/termproject/home.jsp");
 
-        String userId = req.getParameter("user_id");
-        // TODO - userId
-
-
         rd.forward(req, resp);
     }
 }

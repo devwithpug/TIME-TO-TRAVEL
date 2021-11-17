@@ -12,6 +12,17 @@
 		<div class="wrapper">
 			<jsp:include page="/termproject/include/header.jsp"></jsp:include>
 			<div class="main">
+                <c:choose>
+                    <c:when test="${param.get('error').equals('not_found')}">
+                        <br>
+                        <div class="container">
+                            <div class="alert alert-danger" role="alert">
+                                <fmt:message bundle="${home}" key="notFoundErr"/>
+                            </div>
+                        </div>
+                    </c:when>
+                </c:choose>
+
 				<div id="main-img" class="main-img">
                     <div class="main-img-text"></div>
                 </div>
