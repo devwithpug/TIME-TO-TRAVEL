@@ -35,7 +35,7 @@
                     <p><fmt:message bundle="${home}" key="mainText3"/></p>
                 </div>
                 <br><br><br><br><br><br>
-                
+
 			</div>
 			<jsp:include page="/termproject/include/footer.jsp"></jsp:include>
 		</div>
