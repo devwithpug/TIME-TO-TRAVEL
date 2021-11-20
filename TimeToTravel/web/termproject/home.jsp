@@ -35,61 +35,7 @@
                     <p><fmt:message bundle="${home}" key="mainText3"/></p>
                 </div>
                 <br><br><br><br><br><br>
-                <div class="main-text">
-                    <h3>HOT PLACE</h3>
-                    <p><fmt:message bundle="${home}" key="hotPlace"/></p>
-                </div>
-                <br>
                 
-                    <div class="slide_wrapper">
-                        <ul class="slides">
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li nclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                            <li onclick="location.href='#'">
-                                <img src="http://placehold.it/200x200" alt="">
-                                <div class="hotpl-title">핫플레이스 제목</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="controls">
-                        <span class="prev"><i class="fa fa-angle-double-left"></i></span>
-                        <span class="next"><i class="fa fa-angle-double-right"></i></span>
-                    </p>
-                <br><br><br><br>
 			</div>
 			<jsp:include page="/termproject/include/footer.jsp"></jsp:include>
 		</div>
