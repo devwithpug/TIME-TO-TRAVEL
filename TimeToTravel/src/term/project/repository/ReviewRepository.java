@@ -11,6 +11,10 @@ import java.util.List;
 public class ReviewRepository implements Repository<Review, String> {
 
     public ReviewRepository() {
+        try {
+            DBUtil.getConn();
+        } catch (SQLException e) {
+        }
     }
 
     @Override

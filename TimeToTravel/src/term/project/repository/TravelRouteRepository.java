@@ -12,6 +12,10 @@ import java.util.List;
 public class TravelRouteRepository implements Repository<TravelRoute, String> {
 
     public TravelRouteRepository() {
+        try {
+            DBUtil.getConn();
+        } catch (SQLException e) {
+        }
     }
 
     @Override

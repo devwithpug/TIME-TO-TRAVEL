@@ -13,15 +13,16 @@ public class DBUtil {
     private static Connection conn;
 
     public static Connection getConn() throws SQLException {
-        
+
         try {
             Class.forName(driver);
-
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         if (conn == null) {
+            conn = DriverManager.getConnection(url, user, pwd);
+        } else if (conn.isClosed()) {
             conn = DriverManager.getConnection(url, user, pwd);
         }
 

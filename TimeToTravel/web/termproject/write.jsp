@@ -5,6 +5,7 @@
 <%@ page import="term.project.repository.TravelRouteRepository" %>
 <%@ page import="term.project.domain.TravelRoute" %>
 <%@ page import="term.project.repository.TravelRouteRepository" %>
+<%@ page import="term.project.util.DBUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -255,6 +256,13 @@
             </div>
             <jsp:include page="/termproject/include/footer.jsp"></jsp:include>
         </div>
+    <%
+        try {
+            DBUtil.close();
+        } catch (SQLException e) {
+            System.out.println("err = " + e);
+        }
+    %>
     </body>
     <script type="text/javascript">
         function cancel(page, postId) {

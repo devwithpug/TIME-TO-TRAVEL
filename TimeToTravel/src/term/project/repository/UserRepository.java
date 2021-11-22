@@ -10,6 +10,10 @@ import java.util.List;
 public class UserRepository implements Repository<User, String> {
 
     public UserRepository() {
+        try {
+            DBUtil.getConn();
+        } catch (SQLException e) {
+        }
     }
 
     @Override

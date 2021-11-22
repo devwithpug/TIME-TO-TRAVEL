@@ -7,6 +7,7 @@
 <%@ page import="term.project.repository.CommentRepository" %>
 <%@ page import="term.project.domain.Comment" %>
 <%@ page import="java.util.List" %>
+<%@ page import="term.project.util.DBUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -222,6 +223,13 @@
     </div>
     <jsp:include page="/termproject/include/footer.jsp"></jsp:include>
 </div>
+<%
+    try {
+        DBUtil.close();
+    } catch (SQLException e) {
+        System.out.println("err = " + e);
+    }
+%>
 </body>
 <script type="text/javascript">
     function cancel() {

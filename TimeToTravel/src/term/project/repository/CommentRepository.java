@@ -11,6 +11,10 @@ import java.util.List;
 public class CommentRepository implements Repository<Comment, String> {
 
     public CommentRepository() {
+        try {
+            DBUtil.getConn();
+        } catch (SQLException e) {
+        }
     }
 
     @Override
